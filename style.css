@@ -1,7 +1,7 @@
 /* ==========================================================================
    K2-Cyberdrill Exam Platform — Style
    Theme: Windows 11 Fluent — Light Blue
-   Layout: fixed institutional header + fixed footer + centered content
+   Layout: fixed header (logo + all titles) + fixed footer + centered content
    ========================================================================== */
 
 :root {
@@ -16,9 +16,8 @@
     --accent-soft: rgba(0, 120, 212, 0.10);
 
     --glass-bg: rgba(255, 255, 255, 0.72);
-    --glass-bg-strong: rgba(255, 255, 255, 0.85);
+    --glass-bg-strong: rgba(255, 255, 255, 0.88);
     --glass-border: rgba(255, 255, 255, 0.85);
-    --glass-shadow: 0 8px 28px rgba(15, 42, 86, 0.12);
 
     --text-primary: #0b1f3a;
     --text-secondary: #3a5478;
@@ -41,7 +40,8 @@
     --shadow-lg: 0 10px 30px rgba(15, 42, 86, 0.18);
     --shadow-glow: 0 0 0 2px rgba(0, 120, 212, 0.20), 0 4px 14px rgba(0, 120, 212, 0.20);
 
-    --header-h: 64px;
+    /* Header plus haut car il contient logo + 3 lignes de texte */
+    --header-h: 150px;
     --footer-h: 52px;
 
     --font-sans: "Segoe UI Variable", "Segoe UI", "Tahoma", system-ui, -apple-system, "Helvetica Neue", sans-serif;
@@ -69,14 +69,14 @@ body {
     line-height: 1.55;
     min-height: 100vh;
     overflow-x: hidden;
-    /* Reserve space for fixed header & footer */
+    /* Compense header + footer fixes */
     padding-top: calc(var(--header-h) + env(safe-area-inset-top));
     padding-bottom: calc(var(--footer-h) + env(safe-area-inset-bottom));
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
 }
 
-/* Decorative Fluent background */
+/* Fluent decorative background */
 .aero-bg {
     position: fixed;
     inset: 0;
@@ -89,78 +89,91 @@ body {
 }
 
 /* ============================================================
-   FIXED INSTITUTIONAL HEADER (Windows 11 style)
+   FIXED HEADER — logo + tous les titres
    ============================================================ */
-.win7-titlebar {
+.site-header {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
-    height: calc(var(--header-h) + env(safe-area-inset-top));
-    padding: env(safe-area-inset-top) 18px 0;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
     background: var(--glass-bg-strong);
-    backdrop-filter: blur(20px) saturate(160%);
-    -webkit-backdrop-filter: blur(20px) saturate(160%);
-    border-bottom: 1px solid rgba(0, 120, 212, 0.18);
-    box-shadow: 0 2px 12px rgba(15, 42, 86, 0.08);
+    backdrop-filter: blur(22px) saturate(170%);
+    -webkit-backdrop-filter: blur(22px) saturate(170%);
+    border-bottom: 1px solid rgba(0, 120, 212, 0.20);
+    box-shadow: 0 2px 14px rgba(15, 42, 86, 0.10);
+    padding-top: env(safe-area-inset-top);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
 }
 
-.titlebar-brand {
+.header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 14px 20px;
     display: flex;
     align-items: center;
-    gap: 12px;
-    min-width: 0;
-    flex: 1;
+    gap: 18px;
+    min-height: calc(var(--header-h) - 10px);
 }
 
-.titlebar-logo {
-    height: 44px;
-    width: 44px;
+.header-logo {
+    width: 72px;
+    height: 72px;
     object-fit: contain;
-    border-radius: 8px;
+    border-radius: 10px;
     flex-shrink: 0;
     background: #fff;
-    box-shadow: 0 1px 4px rgba(15, 42, 86, 0.15);
+    box-shadow: 0 2px 8px rgba(15, 42, 86, 0.15), 0 0 0 2px rgba(0, 120, 212, 0.12);
 }
 
-.titlebar-brand-text {
+.header-text {
+    flex: 1;
+    min-width: 0;
     display: flex;
     flex-direction: column;
-    min-width: 0;
-    line-height: 1.2;
+    gap: 3px;
+    text-align: center;
 }
 
-.titlebar-title {
-    font-size: 1rem;
+.header-title {
+    margin: 0;
+    font-size: 1.6rem;
     font-weight: 700;
     color: var(--text-primary);
-    letter-spacing: 0.01em;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
 }
 
-.titlebar-subtitle {
-    font-size: 0.72rem;
+.header-subtitle {
+    margin: 0;
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+    line-height: 1.35;
+}
+
+.header-brand {
+    margin: 2px 0 0;
+    font-size: 0.78rem;
     color: var(--text-muted);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    letter-spacing: 0.02em;
 }
 
-.win7-window-controls {
+.header-brand .role {
+    color: var(--accent-strong);
+    font-weight: 600;
+}
+
+.header-controls {
     display: flex;
     gap: 8px;
     align-items: center;
     flex-shrink: 0;
+    align-self: flex-start;
+    padding-top: 6px;
 }
 
-.win7-window-controls .wc {
+.header-controls .wc {
     width: 12px;
     height: 12px;
     border-radius: 50%;
@@ -171,9 +184,6 @@ body {
 .wc-min { background: #fbbf24; }
 .wc-max { background: #34d399; }
 .wc-close { background: #f87171; }
-
-/* Hide the old branding block if still present */
-.branding { display: none !important; }
 
 /* ============================================================
    MAIN CONTAINER
@@ -187,28 +197,7 @@ body {
     -webkit-backdrop-filter: blur(14px) saturate(140%);
     border-left: 1px solid var(--glass-border);
     border-right: 1px solid var(--glass-border);
-    border-radius: 0;
     min-height: calc(100vh - var(--header-h) - var(--footer-h));
-}
-
-/* ============================================================
-   TITLES
-   ============================================================ */
-h1 {
-    margin: 6px 0 8px;
-    color: var(--text-primary);
-    font-size: 2rem;
-    text-align: center;
-    font-weight: 700;
-    letter-spacing: -0.01em;
-    line-height: 1.2;
-}
-
-.subtitle {
-    margin: 0 0 22px;
-    text-align: center;
-    color: var(--text-secondary);
-    font-size: 0.95rem;
 }
 
 /* ============================================================
@@ -231,7 +220,7 @@ h1 {
 }
 
 /* ============================================================
-   TOOLBAR + TABS (aligned side by side, evenly)
+   TOOLBAR + TABS (alignés côte à côte, uniformes)
    ============================================================ */
 .toolbar {
     display: flex;
@@ -252,7 +241,7 @@ h1 {
 .exam-list .exam-btn,
 .theme-list .theme-btn {
     flex: 1 1 auto;
-    min-width: 120px;
+    min-width: 130px;
     text-align: center;
     justify-content: center;
 }
@@ -322,7 +311,7 @@ button:disabled {
     box-shadow: none;
 }
 
-/* Exam / theme pills */
+/* Onglets examen / thème */
 .exam-btn,
 .theme-btn {
     background: rgba(255, 255, 255, 0.6);
@@ -752,17 +741,25 @@ button:disabled {
    RESPONSIVE
    ============================================================ */
 
+@media (max-width: 900px) {
+    :root { --header-h: 140px; }
+}
+
 @media (max-width: 768px) {
-    :root { --header-h: 60px; --footer-h: 48px; }
+    :root { --header-h: 130px; --footer-h: 48px; }
+
+    .header-inner {
+        padding: 12px 14px;
+        gap: 12px;
+    }
+
+    .header-logo { width: 56px; height: 56px; }
+
+    .header-title { font-size: 1.25rem; }
+    .header-subtitle { font-size: 0.82rem; }
+    .header-brand { font-size: 0.72rem; }
 
     .container { padding: 18px 14px 28px; }
-
-    h1 { font-size: 1.55rem; }
-    .subtitle { font-size: 0.86rem; }
-
-    .titlebar-title { font-size: 0.92rem; }
-    .titlebar-subtitle { font-size: 0.68rem; }
-    .titlebar-logo { height: 38px; width: 38px; }
 
     .exam-list .exam-btn,
     .theme-list .theme-btn {
@@ -788,18 +785,24 @@ button:disabled {
 }
 
 @media (max-width: 480px) {
-    :root { --header-h: 56px; --footer-h: 44px; }
+    :root { --header-h: 120px; --footer-h: 44px; }
+
+    .header-inner {
+        padding: 10px 10px;
+        gap: 10px;
+        align-items: flex-start;
+    }
+
+    .header-logo { width: 46px; height: 46px; }
+
+    .header-title { font-size: 1.05rem; }
+    .header-subtitle { font-size: 0.72rem; }
+    .header-brand { display: none; }
+
+    .header-controls { padding-top: 0; }
+    .header-controls .wc { width: 10px; height: 10px; }
 
     .container { padding: 14px 10px 24px; }
-
-    .win7-titlebar { padding-left: 12px; padding-right: 12px; }
-    .titlebar-title { font-size: 0.85rem; }
-    .titlebar-subtitle { display: none; }
-    .titlebar-logo { height: 34px; width: 34px; }
-    .win7-window-controls .wc { width: 10px; height: 10px; }
-
-    h1 { font-size: 1.3rem; }
-    .subtitle { font-size: 0.76rem; }
 
     .exam-list .exam-btn,
     .theme-list .theme-btn {
@@ -833,7 +836,7 @@ button:disabled {
 }
 
 @media print {
-    .win7-titlebar, .toolbar, .theme-list, .exam-progress, .timer-display,
+    .site-header, .toolbar, .theme-list, .exam-progress, .timer-display,
     .navigation, .toast, .stats-panel, .footer { display: none !important; }
     body { background: #fff; color: #000; padding: 0; }
     .container { border: none; background: none; box-shadow: none; }
