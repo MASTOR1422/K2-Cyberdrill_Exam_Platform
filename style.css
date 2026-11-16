@@ -1,401 +1,607 @@
 /* ==========================================================================
-   K2-CYBERDRILL EXAM PLATFORM — WINDOWS 10 PROFESSIONAL ENTERPRISE THEME
-   Engineered for: K-2 GLOBAL BUSINESS S.A.R.L.U.
-   Architect: Ananias KASANDA (IT-DevSecOps)
+   K2-Cyberdrill Exam Platform — Style
+   Thème : Windows 11 Fluent Design (clair, accent bleu signature)
+   Palette : Mica light + accent #0078D4 (pas de vert)
+   Responsive : mobile-first, affichage plein écran, onglets parallèles compacts
    ========================================================================== */
 
 :root {
-    /* Palette Windows 10 Enterprise / Fluent Steel & Blue */
-    --win10-bg: #1e1e1e;
-    --win10-header-bg: #2d2d30;
-    --win10-card-bg: #252526;
-    --win10-border: #3f3f46;
-    --win10-accent: #0078d4;
-    --win10-accent-hover: #1084d8;
-    --win10-accent-active: #005a9e;
+    /* --- Accent Windows 11 (bleu signature) --- */
+    --w11-accent:        #0078D4;
+    --w11-accent-hover:  #0067C0;
+    --w11-accent-pressed:#005FB8;
+    --w11-accent-light:  #C7E0F4;
+    --w11-accent-lighter:#EFF6FC;
+    --w11-accent-border: #4DA0E5;
 
-    --text-primary: #f3f3f3;
-    --text-secondary: #cccccc;
-    --text-muted: #969696;
+    /* --- Surfaces Mica (fond clair Windows 11) --- */
+    --w11-bg:            #F3F3F3;
+    --w11-bg-soft:       #FAFAFA;
+    --w11-surface:       #FFFFFF;
+    --w11-surface-hover: #F6F9FC;
+    --w11-surface-alt:   #F5F7FA;
 
-    --success: #107c10;
-    --success-bg: rgba(16, 124, 16, 0.15);
-    --danger: #e81123;
-    --danger-bg: rgba(232, 17, 35, 0.15);
-    --warning: #ffb900;
+    /* --- Bordures --- */
+    --w11-border:        #E5E5E5;
+    --w11-border-soft:   #EFEFEF;
+    --w11-border-strong: #D1D1D1;
+    --w11-divider:       #EDEDED;
 
-    --radius-win10: 4px;
-    --shadow-win10: 0 4px 16px rgba(0, 0, 0, 0.4);
+    /* --- Texte --- */
+    --text-primary:   #1A1A1A;
+    --text-secondary: #5B5B5B;
+    --text-muted:     #8A8A8A;
+    --text-on-accent: #FFFFFF;
 
-    --font-sans: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    --font-mono: "Consolas", "Courier New", monospace;
+    /* --- Statuts (palette Windows 11) --- */
+    --success:    #0F7B0F;
+    --success-bg: #E8F5E9;
+    --danger:     #C42B1C;
+    --danger-bg:  #FDECEA;
+    --warning:    #B47B00;
+    --warning-bg: #FFF4E0;
+
+    /* --- Rayons (Fluent : 4 / 6 / 8) --- */
+    --radius-xs: 4px;
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-pill: 999px;
+
+    /* --- Ombres douces (Fluent) --- */
+    --shadow-sm: 0 1px 2px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
+    --shadow-md: 0 2px 8px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.05);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06);
+    --shadow-accent: 0 0 0 1px var(--w11-accent-border), 0 4px 14px rgba(0,120,212,0.22);
+
+    /* --- Métriques du header --- */
+    --header-h: 56px;
+    --header-logo: 38px;            /* proportionnel au header (~68%) */
+
+    --font-sans: "Segoe UI Variable", "Segoe UI", "Tahoma", "Geneva", "Verdana",
+                 system-ui, -apple-system, "Helvetica Neue", sans-serif;
+    --font-mono: "Cascadia Code", "Consolas", "Courier New", monospace;
 }
 
-*, *::before, *::after {
-    box-sizing: border-box;
+* { box-sizing: border-box; }
+
+html, body {
     margin: 0;
     padding: 0;
+    height: 100%;
 }
 
-/* Verrouillage du viewport : Page unique sans scroll global */
-html, body {
-    width: 100%;
-    height: 100vh;
-    height: 100dvh;
-    overflow: hidden;
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
     font-family: var(--font-sans);
     color: var(--text-primary);
-    background-color: var(--win10-bg);
-    display: flex;
-    flex-direction: column;
+    /* Fond Mica clair : dégradé subtil bleuté */
+    background:
+        radial-gradient(1200px 600px at 100% -10%, var(--w11-accent-lighter) 0%, transparent 55%),
+        radial-gradient(900px 500px at -10% 110%, var(--w11-accent-lighter) 0%, transparent 50%),
+        var(--w11-bg);
+    background-attachment: fixed;
+    line-height: 1.55;
+    min-height: 100vh;
+    overflow-x: hidden;
+    padding: env(safe-area-inset-top) env(safe-area-inset-right)
+             env(safe-area-inset-bottom) env(safe-area-inset-left);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
 }
 
-/* ---------------- 1. HEADER WINDOWS 10 (Figé en haut) ---------------- */
-.win10-header {
-    flex: 0 0 auto;
-    height: 80px; /* Espace ample pour un grand logo */
-    background-color: var(--win10-header-bg);
-    border-bottom: 1px solid var(--win10-border);
-    display: flex;
-    align-items: center;
-    padding: 0 1cm; /* Respect exact de la consigne de 1cm des deux côtés */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+/* ==========================================================================
+   HEADER — barre de titre Windows 11
+   ========================================================================== */
+.app-header {
+    position: sticky;
+    top: 0;
     z-index: 100;
-}
-
-.header-inner {
-    width: 100%;
+    height: var(--header-h);
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 16px;
+    padding: 0 6px 0 14px;
+    background: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(28px) saturate(160%);
+    -webkit-backdrop-filter: blur(28px) saturate(160%);
+    border-bottom: 1px solid var(--w11-border);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
 }
 
-.brand-logo {
-    height: 64px;
-    width: 64px;
-    object-fit: contain;
-    border-radius: var(--radius-win10);
-    background: #ffffff;
-    padding: 2px;
-    border: 1px solid var(--win10-border);
+.header-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+/* Logo à gauche, proportionnel à la hauteur du header */
+.header-logo {
+    height: var(--header-logo);
+    width: var(--header-logo);
     flex-shrink: 0;
+    display: block;
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
 }
 
 .header-titles {
-    flex: 1;
-    text-align: center; /* Textes parfaitement centrés */
-    padding: 0 20px;
-}
-
-.header-titles h1 {
-    font-size: 1.25rem;
-    font-weight: 600;
-    color: #ffffff;
-    letter-spacing: 0.02em;
-    margin-bottom: 2px;
-}
-
-.header-titles p {
-    font-size: 0.8rem;
-    color: var(--text-secondary);
-}
-
-.header-titles .role {
-    color: #61afef;
-    font-weight: 600;
-}
-
-.win10-controls {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    flex-shrink: 0;
-}
-
-.win10-controls .wc {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    display: inline-block;
-}
-.wc-min { background: var(--warning); }
-.wc-max { background: var(--success); }
-.wc-close { background: var(--danger); }
-
-/* ---------------- 2. CONTENEUR PRINCIPAL (Marges 1cm gauche/droite) ---------------- */
-.app-container {
-    flex: 1 1 auto;
-    min-height: 0;
-    width: 100%;
-    padding: 12px 1cm; /* 1 cm de marge à gauche et à droite */
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    overflow: hidden;
-}
-
-/* ---------------- 3. TOOLBAR ET ONGLETS CÔTE À CÔTE SUR TOUT L'ESPACE ---------------- */
-.top-dashboard-bar {
-    flex: 0 0 auto;
-    background: var(--win10-card-bg);
-    border: 1px solid var(--win10-border);
-    border-radius: var(--radius-win10);
-    padding: 10px 14px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    box-shadow: var(--shadow-win10);
-}
-
-.toolbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-    width: 100%;
-}
-
-/* Les onglets s'étalent uniformément sur tout l'espace disponible côte à côte */
-.exam-list {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex: 1 1 auto;
-    width: 100%;
-    overflow-x: auto;
-    scrollbar-width: none;
-}
-
-.exam-list::-webkit-scrollbar {
-    display: none;
-}
-
-/* Boutons d'onglets répartis uniformément */
-.exam-list button,
-.exam-tab,
-.exam-btn {
-    flex: 1 1 0;
+    justify-content: center;
     min-width: 0;
-    text-align: center;
+    line-height: 1.2;
+}
+
+.header-app-name {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    letter-spacing: 0.01em;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    padding: 8px 12px;
-    background: #2d2d30;
+}
+
+.header-org {
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Contrôles de fenêtre Windows 11 (droite) */
+.header-controls {
+    display: flex;
+    align-items: stretch;
+    height: 100%;
+}
+
+.header-controls .wc {
+    width: 46px;
+    height: 100%;
+    border: none;
+    background: transparent;
     color: var(--text-primary);
-    border: 1px solid var(--win10-border);
-    border-radius: var(--radius-win10);
-    font-size: 0.82rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.15s, border-color 0.15s;
+    cursor: default;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    min-height: 0;
+    box-shadow: none;
+    border-radius: 0;
+    transition: background 0.12s ease;
 }
 
-.exam-list button:hover,
-.exam-tab:hover,
-.exam-btn:hover {
-    background: #3e3e42;
-    border-color: var(--win10-accent);
+.header-controls .wc svg {
+    width: 11px;
+    height: 11px;
 }
 
-.exam-list button.active,
-.exam-list button[aria-selected="true"],
-.exam-tab.active,
-.exam-btn.active {
-    background: var(--win10-accent);
-    color: #ffffff;
-    border-color: var(--win10-accent);
+.header-controls .wc:hover {
+    background: var(--w11-border-soft);
+    transform: none;
+    box-shadow: none;
 }
+
+.header-controls .wc-close:hover {
+    background: #C42B1C;
+    color: #fff;
+}
+
+.header-controls .wc:active {
+    background: var(--w11-border);
+    transform: none;
+    box-shadow: none;
+}
+
+/* ==========================================================================
+   CONTENU PRINCIPAL — presque tout l'écran
+   ========================================================================== */
+.app-main {
+    width: 100%;
+    max-width: 1600px;            /* presque plein écran sur grand moniteur */
+    margin: 0 auto;
+    padding: 22px 28px 36px;
+    min-height: calc(100vh - var(--header-h));
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==========================================================================
+   HERO — grand titre + UN seul sous-titre
+   ========================================================================== */
+.hero {
+    margin: 4px 0 18px;
+    padding: 6px 4px 0;
+}
+
+.hero h1 {
+    margin: 0 0 6px;
+    font-size: clamp(1.55rem, 2.4vw, 2rem);
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--text-primary);
+}
+
+.hero .subtitle {
+    margin: 0;
+    font-size: clamp(0.9rem, 1.1vw, 1rem);
+    color: var(--text-secondary);
+    font-weight: 400;
+}
+
+/* ==========================================================================
+   BARRE D'ONGLETS — tous alignés en parallèle, compact
+   ========================================================================== */
+.tabs-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 0 14px;
+    padding: 8px;
+    background: var(--w11-surface);
+    border: 1px solid var(--w11-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+.exam-list {
+    flex: 1 1 auto;
+    min-width: 0;
+    display: flex;
+    flex-wrap: nowrap;            /* parallèle : une seule ligne */
+    align-items: center;
+    gap: 4px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scrollbar-width: thin;
+    scrollbar-color: var(--w11-border-strong) transparent;
+    padding: 2px 2px 4px;
+}
+
+.exam-list::-webkit-scrollbar { height: 6px; }
+.exam-list::-webkit-scrollbar-thumb {
+    background: var(--w11-border-strong);
+    border-radius: var(--radius-pill);
+}
+.exam-list::-webkit-scrollbar-track { background: transparent; }
 
 .toolbar-actions {
+    flex: 0 0 auto;
     display: flex;
+    align-items: center;
     gap: 8px;
+    padding-left: 8px;
+    border-left: 1px solid var(--w11-divider);
+}
+
+/* ==========================================================================
+   FILTRES PAR THÈME — onglets parallèles secondaires
+   ========================================================================== */
+.theme-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 14px;
+    padding: 8px 10px;
+    background: var(--w11-surface-alt);
+    border: 1px solid var(--w11-border-soft);
+    border-radius: var(--radius-md);
+}
+
+/* ==========================================================================
+   BOUTONS — Fluent style
+   ========================================================================== */
+.btn,
+button {
+    font-family: inherit;
+    font-size: 0.86rem;
+    font-weight: 600;
+    border: 1px solid var(--w11-border-strong);
+    border-radius: var(--radius-sm);
+    padding: 8px 14px;
+    cursor: pointer;
+    color: var(--text-primary);
+    background: var(--w11-surface);
+    transition: background 0.14s ease, border-color 0.14s ease,
+                box-shadow 0.14s ease, transform 0.08s ease, color 0.14s ease;
+    box-shadow: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    min-height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    line-height: 1;
+}
+
+.btn:hover,
+button:hover {
+    background: var(--w11-surface-hover);
+    border-color: var(--w11-accent-border);
+    transform: none;
+    box-shadow: none;
+}
+
+.btn:active,
+button:active {
+    background: var(--w11-border-soft);
+    border-color: var(--w11-accent);
+    transform: scale(0.985);
+    box-shadow: none;
+}
+
+.btn:focus-visible,
+button:focus-visible,
+input:focus-visible,
+label:focus-visible {
+    outline: 2px solid var(--w11-accent);
+    outline-offset: 1px;
+}
+
+button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.btn-icon {
+    width: 14px;
+    height: 14px;
     flex-shrink: 0;
 }
 
-.btn-win10 {
-    padding: 8px 14px;
-    background: #333337;
-    color: var(--text-primary);
-    border: 1px solid var(--win10-border);
-    border-radius: var(--radius-win10);
-    font-size: 0.8rem;
+/* Onglets examens / thèmes — pilules parallèles */
+.exam-btn,
+.theme-btn {
+    flex: 0 0 auto;
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    padding: 7px 14px;
+    font-size: 0.82rem;
     font-weight: 600;
-    cursor: pointer;
+    min-height: 32px;
+    white-space: nowrap;
+}
+
+.exam-btn:hover,
+.theme-btn:hover {
+    background: var(--w11-accent-lighter);
+    color: var(--w11-accent-hover);
+    border-color: transparent;
+}
+
+.exam-btn:active,
+.theme-btn:active {
+    background: var(--w11-accent-light);
+    transform: scale(0.97);
+}
+
+/* Onglet actif : accent bleu Windows 11 */
+.exam-btn.active,
+.theme-btn.active {
+    background: var(--w11-accent);
+    color: var(--text-on-accent);
+    border-color: var(--w11-accent-pressed);
+    box-shadow: var(--shadow-accent);
+}
+
+.exam-btn.active:hover,
+.theme-btn.active:hover {
+    background: var(--w11-accent-hover);
+    color: var(--text-on-accent);
+}
+
+/* Boutons fantômes (import / stats) */
+.btn-ghost,
+.file-import-label {
+    background: transparent;
+    border: 1px solid var(--w11-border);
+    color: var(--text-secondary);
+    padding: 7px 12px;
+    min-height: 32px;
+}
+
+.btn-ghost:hover,
+.file-import-label:hover {
+    color: var(--w11-accent-hover);
+    border-color: var(--w11-accent-border);
+    background: var(--w11-accent-lighter);
+}
+
+.file-import-label {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    white-space: nowrap;
-    transition: background 0.15s;
-}
-
-.btn-win10:hover {
-    background: #3e3e42;
-    border-color: var(--win10-accent);
-}
-
-/* Filtres thématiques alignés */
-.theme-list {
-    flex: 0 0 auto;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    overflow-x: auto;
-    scrollbar-width: none;
-    padding-top: 4px;
-    border-top: 1px solid var(--win10-border);
-}
-
-.theme-list::-webkit-scrollbar {
-    display: none;
-}
-
-.theme-btn, .theme-tab {
-    padding: 4px 10px;
-    background: #2d2d30;
-    color: var(--text-secondary);
-    border: 1px solid var(--win10-border);
-    border-radius: var(--radius-win10);
-    font-size: 0.75rem;
     cursor: pointer;
-    white-space: nowrap;
 }
 
-.theme-btn.active, .theme-tab.active {
-    background: var(--win10-accent);
-    color: #fff;
-    border-color: var(--win10-accent);
+/* Bouton primaire */
+.btn.primary {
+    background: var(--w11-accent);
+    color: var(--text-on-accent);
+    border-color: var(--w11-accent-pressed);
 }
 
-/* Barre de progression Windows 10 */
+.btn.primary:hover {
+    background: var(--w11-accent-hover);
+    border-color: var(--w11-accent-pressed);
+    box-shadow: var(--shadow-accent);
+}
+
+.btn.secondary {
+    background: var(--w11-surface-alt);
+    border-color: var(--w11-border);
+}
+
+/* ==========================================================================
+   BARRE DE PROGRESSION
+   ========================================================================== */
 .exam-progress {
-    flex: 0 0 auto;
     height: 4px;
-    background: #3f3f46;
-    border-radius: 99px;
+    background: var(--w11-border-soft);
+    border-radius: var(--radius-pill);
     overflow: hidden;
+    margin: 0 0 14px;
 }
 
 .exam-progress-bar {
     height: 100%;
     width: 0%;
-    background: var(--win10-accent);
-    transition: width 0.3s ease;
+    background: linear-gradient(90deg, var(--w11-accent), #4DA0E5);
+    border-radius: var(--radius-pill);
+    transition: width 0.35s ease;
 }
 
-/* ---------------- 4. STATISTIQUES & CHRONO ---------------- */
-.timer-display {
-    flex: 0 0 auto;
-    text-align: center;
-    padding: 6px 14px;
-    background: var(--win10-card-bg);
-    border: 1px solid var(--win10-border);
-    border-radius: var(--radius-win10);
-    font-weight: 700;
-    font-size: 0.9rem;
-    color: #61afef;
-    font-variant-numeric: tabular-nums;
-}
-
+/* ==========================================================================
+   PANNEAU STATISTIQUES
+   ========================================================================== */
 .stats-panel {
-    flex: 0 0 auto;
-    background: var(--win10-card-bg);
-    border: 1px solid var(--win10-border);
-    border-radius: var(--radius-win10);
-    padding: 12px 16px;
+    margin: 0 0 14px;
+    padding: 16px 18px;
+    border-radius: var(--radius-md);
+    background: var(--w11-surface);
+    border: 1px solid var(--w11-border);
+    box-shadow: var(--shadow-sm);
+    animation: fadeIn 0.22s ease;
 }
 
 .stats-panel h3 {
-    font-size: 0.9rem;
-    color: #ffffff;
-    margin-bottom: 8px;
+    margin: 0 0 12px;
+    color: var(--text-primary);
+    font-size: 0.95rem;
+    font-weight: 700;
 }
 
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 8px;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 10px;
 }
 
 .stat-card {
-    background: #1e1e1e;
-    border: 1px solid var(--win10-border);
-    padding: 8px 10px;
-    border-radius: var(--radius-win10);
+    padding: 12px 14px;
+    border-radius: var(--radius-sm);
+    background: var(--w11-accent-lighter);
+    border: 1px solid var(--w11-accent-light);
 }
 
 .stat-card .stat-value {
-    font-size: 1.25rem;
+    display: block;
+    font-size: 1.5rem;
     font-weight: 700;
-    color: var(--win10-accent);
+    color: var(--w11-accent-pressed);
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
 }
 
 .stat-card .stat-label {
     font-size: 0.7rem;
-    color: var(--text-muted);
     text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-muted);
 }
 
-/* ---------------- 5. ZONE DU QUIZ (Scrollable en interne) ---------------- */
+/* ==========================================================================
+   MINUTEUR
+   ========================================================================== */
+.timer-display {
+    text-align: center;
+    margin: 0 auto 14px;
+    padding: 10px 16px;
+    border-radius: var(--radius-md);
+    font-weight: 700;
+    font-size: 1.05rem;
+    background: var(--w11-surface);
+    color: var(--w11-accent-pressed);
+    border: 1px solid var(--w11-border);
+    box-shadow: var(--shadow-sm);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.03em;
+    max-width: 320px;
+}
+
+.timer-display.warning {
+    background: var(--warning-bg);
+    color: var(--warning);
+    border-color: rgba(180, 123, 0, 0.4);
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.timer-display.critical {
+    background: var(--danger-bg);
+    color: var(--danger);
+    border-color: rgba(196, 43, 28, 0.4);
+    animation: pulse 0.8s ease-in-out infinite;
+}
+
+/* ==========================================================================
+   ZONE DE QUESTION
+   ========================================================================== */
 .quiz-container {
+    min-height: 240px;
     flex: 1 1 auto;
-    min-height: 0;
-    overflow-y: auto;
-    background: var(--win10-card-bg);
-    border: 1px solid var(--win10-border);
-    border-radius: var(--radius-win10);
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    box-shadow: var(--shadow-win10);
 }
 
-.quiz-container::-webkit-scrollbar {
-    width: 6px;
-}
-.quiz-container::-webkit-scrollbar-thumb {
-    background: #3f3f46;
-    border-radius: 3px;
-}
-
-.question-card, .results-card {
-    background: #1e1e1e;
-    border: 1px solid var(--win10-border);
-    border-radius: var(--radius-win10);
-    padding: 18px;
+.question-card,
+.results-card {
+    background: var(--w11-surface);
+    border: 1px solid var(--w11-border);
+    border-radius: var(--radius-lg);
+    padding: 22px;
+    box-shadow: var(--shadow-md);
 }
 
 .question-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    font-size: 0.78rem;
+    justify-content: space-between;
+    gap: 12px;
+    flex-wrap: wrap;
     color: var(--text-muted);
+    font-size: 0.72rem;
     text-transform: uppercase;
-    margin-bottom: 10px;
+    letter-spacing: 0.06em;
+    margin-bottom: 12px;
+    font-weight: 600;
 }
 
 .theme-badge {
-    background: rgba(0, 120, 212, 0.2);
-    color: #61afef;
-    border: 1px solid rgba(0, 120, 212, 0.4);
-    padding: 2px 10px;
-    border-radius: 99px;
-    font-weight: 600;
+    background: var(--w11-accent-lighter);
+    color: var(--w11-accent-pressed);
+    border: 1px solid var(--w11-accent-light);
+    border-radius: var(--radius-pill);
+    padding: 4px 12px;
     text-transform: none;
+    letter-spacing: 0;
+    font-size: 0.76rem;
+    font-weight: 600;
 }
 
-.question-card h3, .results-card h2 {
-    font-size: 1.05rem;
-    color: #ffffff;
-    margin-bottom: 14px;
-    line-height: 1.4;
+.question-card h3,
+.results-card h2 {
+    margin: 6px 0 14px;
+    color: var(--text-primary);
+    font-size: 1.08rem;
+    line-height: 1.45;
+    font-weight: 700;
 }
 
-/* Grille 2 colonnes pour les options */
 .answers {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
     margin-top: 12px;
 }
@@ -403,160 +609,184 @@ html, body {
 .option-item {
     display: flex;
     align-items: flex-start;
-    gap: 10px;
-    background: #2d2d30;
-    border: 1px solid var(--win10-border);
-    border-radius: var(--radius-win10);
-    padding: 12px;
+    gap: 12px;
+    background: var(--w11-surface-alt);
+    border: 1px solid var(--w11-border-soft);
+    border-radius: var(--radius-md);
+    padding: 12px 14px;
     cursor: pointer;
-    transition: background 0.15s, border-color 0.15s;
+    transition: border-color 0.14s, background 0.14s, transform 0.08s, box-shadow 0.14s;
+    -webkit-tap-highlight-color: transparent;
 }
 
 .option-item:hover {
-    background: #3e3e42;
-    border-color: var(--win10-accent);
+    border-color: var(--w11-accent-border);
+    background: var(--w11-accent-lighter);
+}
+
+.option-item:active {
+    transform: scale(0.995);
 }
 
 .option-item input[type="radio"] {
-    accent-color: var(--win10-accent);
-    width: 16px;
-    height: 16px;
-    margin-top: 2px;
+    margin-top: 3px;
+    accent-color: var(--w11-accent);
+    width: 18px;
+    height: 18px;
     flex-shrink: 0;
+    cursor: pointer;
+}
+
+.option-item input[type="radio"]:checked + span {
+    color: var(--text-primary);
+    font-weight: 600;
 }
 
 .option-item.selected {
-    background: rgba(0, 120, 212, 0.15);
-    border-color: var(--win10-accent);
+    border-color: var(--w11-accent);
+    background: var(--w11-accent-lighter);
+    box-shadow: var(--shadow-accent);
 }
 
 .option-item span {
-    font-size: 0.9rem;
     color: var(--text-primary);
+    font-size: 0.92rem;
 }
 
 /* Feedback */
 .feedback {
-    margin-top: 14px;
-    padding: 12px 16px;
-    border-radius: var(--radius-win10);
-    font-size: 0.88rem;
+    margin-top: 16px;
+    border-radius: var(--radius-md);
+    padding: 14px 16px;
     border: 1px solid transparent;
+    animation: fadeIn 0.22s ease;
 }
 
 .feedback strong {
     display: block;
-    font-size: 0.95rem;
-    margin-bottom: 4px;
+    font-size: 1.02rem;
+    margin-bottom: 6px;
+    letter-spacing: 0.02em;
+}
+
+.feedback p {
+    margin: 6px 0;
+    line-height: 1.55;
+    color: var(--text-secondary);
+    word-break: break-word;
+}
+
+.feedback p span {
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.feedback code,
+.feedback pre {
+    font-family: var(--font-mono);
+    background: var(--w11-surface-alt);
+    border: 1px solid var(--w11-border-soft);
+    border-radius: var(--radius-xs);
+    padding: 2px 6px;
+    font-size: 0.85em;
+    color: var(--w11-accent-pressed);
+    white-space: pre-wrap;
+    word-break: break-word;
 }
 
 .feedback.correct {
     background: var(--success-bg);
-    border-color: rgba(16, 124, 16, 0.4);
-    color: #d1fae5;
+    border-color: rgba(15, 123, 15, 0.35);
+    color: #143a14;
 }
-.feedback.correct strong { color: #22c55e; }
+
+.feedback.correct strong { color: var(--success); }
 
 .feedback.incorrect {
     background: var(--danger-bg);
-    border-color: rgba(232, 17, 35, 0.4);
-    color: #fee2e2;
+    border-color: rgba(196, 43, 28, 0.35);
+    color: #4a1410;
 }
-.feedback.incorrect strong { color: #f87171; }
 
-/* Navigation */
+.feedback.incorrect strong { color: var(--danger); }
+
+/* Navigation entre questions */
 .navigation {
     display: flex;
     justify-content: space-between;
     gap: 10px;
-    margin-top: 16px;
+    margin-top: 20px;
+    flex-wrap: wrap;
 }
 
 .navigation button {
-    flex: 1;
-    padding: 10px 16px;
-    background: #333337;
-    color: #fff;
-    border: 1px solid var(--win10-border);
-    border-radius: var(--radius-win10);
-    font-weight: 600;
-    cursor: pointer;
+    flex: 1 1 140px;
+    min-width: 120px;
 }
 
-.navigation button:hover {
-    background: var(--win10-accent);
-    border-color: var(--win10-accent);
+/* Résultats */
+.results-card p { color: var(--text-secondary); }
+
+.results-actions { margin-top: 18px; }
+
+.review-item {
+    margin: 14px 0;
+    padding: 12px 14px;
+    border-radius: var(--radius-md);
+    background: var(--w11-surface-alt);
+    border: 1px solid var(--w11-border-soft);
 }
 
-/* Results & Banner */
+.review-item p {
+    margin: 6px 0;
+    color: var(--text-secondary);
+    word-break: break-word;
+}
+
+.review-item .success { color: var(--success); font-weight: 700; }
+.review-item .error   { color: var(--danger);  font-weight: 700; }
+
 .score-banner {
     text-align: center;
-    padding: 16px;
-    background: #1e1e1e;
-    border: 1px solid var(--win10-border);
-    border-radius: var(--radius-win10);
-    margin-bottom: 12px;
+    margin: 14px 0;
+    padding: 22px;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, var(--w11-accent-lighter), var(--w11-surface-alt));
+    border: 1px solid var(--w11-accent-light);
 }
 
 .score-banner .big {
-    font-size: 2rem;
-    font-weight: 700;
-    color: var(--win10-accent);
+    display: block;
+    font-size: 2.4rem;
+    font-weight: 800;
+    color: var(--w11-accent-pressed);
+    margin-bottom: 4px;
+    line-height: 1;
 }
 
-.review-item {
-    background: #1e1e1e;
-    border: 1px solid var(--win10-border);
-    padding: 10px 14px;
-    border-radius: var(--radius-win10);
-    margin-bottom: 10px;
-}
+.score-banner.pass .big { color: var(--success); }
+.score-banner.fail .big { color: var(--danger); }
 
-/* ---------------- 6. FOOTER WINDOWS 10 (Figé en bas) ---------------- */
-.win10-footer {
-    flex: 0 0 auto;
-    height: 38px;
-    background-color: var(--win10-header-bg);
-    border-top: 1px solid var(--win10-border);
-    padding: 0 1cm; /* Respect des 1cm de marge latérale */
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 0.78rem;
-    color: var(--text-secondary);
-    z-index: 100;
-}
-
-.win10-footer strong {
-    color: #ffffff;
-}
-
-.badge-devsecops {
-    background: var(--win10-accent);
-    color: #ffffff;
-    padding: 2px 6px;
-    border-radius: 3px;
-    font-size: 0.7rem;
-    font-weight: 700;
-    margin-left: 4px;
-}
-
-/* Toast */
+/* ==========================================================================
+   TOAST
+   ========================================================================== */
 .toast {
     position: fixed;
-    bottom: 50px;
     left: 50%;
-    transform: translateX(-50%) translateY(15px);
-    background: #2d2d30;
-    color: #fff;
-    padding: 10px 18px;
-    border-radius: var(--radius-win10);
-    border: 1px solid var(--win10-accent);
-    box-shadow: var(--shadow-win10);
-    font-size: 0.85rem;
+    bottom: 24px;
+    transform: translateX(-50%) translateY(20px);
+    background: var(--w11-surface);
+    color: var(--text-primary);
+    padding: 12px 20px;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--w11-border);
+    border-left: 4px solid var(--w11-accent);
+    box-shadow: var(--shadow-lg);
     z-index: 1000;
     opacity: 0;
-    transition: opacity 0.2s ease, transform 0.2s ease;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    font-size: 0.88rem;
+    max-width: calc(100% - 32px);
 }
 
 .toast.show {
@@ -564,13 +794,129 @@ html, body {
     transform: translateX(-50%) translateY(0);
 }
 
-/* Responsive pour tablettes et mobiles */
-@media (max-width: 900px) {
-    .win10-header, .win10-footer, .app-container {
-        padding-left: 12px;
-        padding-right: 12px; /* S'adapte sur petit écran si 1cm est trop large */
+/* ==========================================================================
+   FOOTER
+   ========================================================================== */
+.app-footer {
+    margin-top: 28px;
+    padding: 16px 4px 4px;
+    border-top: 1px solid var(--w11-divider);
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.78rem;
+    line-height: 1.7;
+}
+
+.app-footer .footer-line { display: block; }
+
+.app-footer .role {
+    color: var(--w11-accent-pressed);
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   ZONE D'ERREUR
+   ========================================================================== */
+.error-box {
+    background: var(--danger-bg);
+    border: 1px solid rgba(196, 43, 28, 0.4);
+    border-radius: var(--radius-md);
+    padding: 18px;
+    color: #4a1410;
+    text-align: center;
+}
+
+/* ==========================================================================
+   ANIMATIONS
+   ========================================================================== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.6; }
+}
+
+/* ==========================================================================
+   RESPONSIVE
+   ========================================================================== */
+
+/* Tablette */
+@media (max-width: 880px) {
+    .app-main { padding: 18px 16px 28px; }
+
+    .hero h1 { font-size: 1.45rem; }
+    .hero .subtitle { font-size: 0.88rem; }
+
+    .header-titles .header-org { display: none; }   /* compacter le header */
+
+    .tabs-bar { flex-direction: column; align-items: stretch; gap: 8px; padding: 8px; }
+    .toolbar-actions {
+        border-left: none;
+        padding-left: 0;
+        border-top: 1px solid var(--w11-divider);
+        padding-top: 8px;
+        justify-content: flex-end;
     }
-    .answers {
-        grid-template-columns: 1fr;
+
+    .question-card, .results-card { padding: 16px; }
+}
+
+/* Téléphone */
+@media (max-width: 540px) {
+    :root { --header-h: 52px; --header-logo: 34px; }
+
+    .app-main { padding: 14px 10px 24px; }
+
+    .hero h1 { font-size: 1.25rem; }
+    .hero .subtitle { font-size: 0.82rem; }
+
+    .header-app-name { font-size: 0.86rem; }
+    .header-controls .wc { width: 42px; }
+
+    .exam-btn, .theme-btn { padding: 7px 11px; font-size: 0.78rem; }
+    .btn-ghost, .file-import-label { padding: 7px 10px; font-size: 0.8rem; }
+
+    .toolbar-actions { width: 100%; justify-content: space-between; }
+    .toolbar-actions .btn,
+    .toolbar-actions .file-import-label { flex: 1 1 calc(50% - 4px); }
+
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .timer-display { font-size: 0.98rem; padding: 9px 12px; }
+
+    .question-card h3 { font-size: 0.98rem; }
+    .option-item { padding: 11px 12px; }
+    .option-item span { font-size: 0.88rem; }
+
+    .navigation { gap: 8px; }
+    .navigation button { flex: 1 1 100%; padding: 12px 14px; }
+
+    .score-banner .big { font-size: 1.9rem; }
+    .review-item { padding: 10px 12px; }
+}
+
+/* Très grand écran : occuper davantage */
+@media (min-width: 1700px) {
+    .app-main { max-width: 1720px; padding: 26px 40px 40px; }
+    .hero h1 { font-size: 2.1rem; }
+}
+
+/* Réduction des animations */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
     }
+}
+
+/* Impression */
+@media print {
+    .app-header, .tabs-bar, .theme-list, .exam-progress, .timer-display,
+    .navigation, .toast, .stats-panel { display: none !important; }
+    body { background: #fff; color: #000; }
+    .app-main { padding: 0; max-width: 100%; }
+    .question-card, .review-item { border: 1px solid #ccc; box-shadow: none; }
 }
