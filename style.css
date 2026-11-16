@@ -1,7 +1,7 @@
 /* ==========================================================================
    K2-CYBERDRILL EXAM PLATFORM - FEUILLE DE STYLE PRINCIPALE
    Thème : Windows 11 Fluent Design (Bleu Clair)
-   Structure : Logo fixe (30mm) + Header fixe encadré côte à côte + Page unique
+   Structure : Logo carré 30x30mm + Header poussé à droite (hauteur 30mm)
    Conception : Ananias KASANDA (IT-DevSecOps) | K-2 GLOBAL BUSINESS S.A.R.L.U.
    ========================================================================== */
 
@@ -44,9 +44,9 @@
     --shadow-lg: 0 10px 30px rgba(15, 42, 86, 0.18);
     --shadow-glow: 0 0 0 2px rgba(0, 120, 212, 0.22), 0 4px 12px rgba(0, 120, 212, 0.18);
 
-    /* Dimensions exactes : Logo (30mm) + Écart (10px) + Header (92px) + Marges (1cm) */
-    --header-h: 92px;
-    --logo-w: 30mm;
+    /* Dimensions exactes : Logo 30mm x 30mm + Header même hauteur (30mm) */
+    --logo-size: 30mm;
+    --header-h: 30mm;
     --top-gap: 10px;
     --footer-h: 40px;
     --side-margin: 1cm;
@@ -66,7 +66,7 @@ html, body {
     width: 100%;
     height: 100vh;
     height: 100dvh;
-    overflow: hidden; /* Page unique : aucun défilement global */
+    overflow: hidden; /* Page unique sans scroll global */
     font-family: var(--font-sans);
     color: var(--text-primary);
     background: linear-gradient(135deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 55%, var(--bg-gradient-3) 100%);
@@ -86,14 +86,14 @@ html, body {
 }
 
 /* ==========================================================================
-   1. BLOC LOGO FIGÉ À GAUCHE (En dehors du header, largeur 30mm, même hauteur)
+   1. BLOC LOGO CARRÉ 30mm x 30mm FIGÉ À GAUCHE (En dehors du header)
    ========================================================================== */
 .fixed-logo-box {
     position: fixed;
     top: 8px;
     left: var(--side-margin);
-    width: var(--logo-w);
-    height: var(--header-h);
+    width: var(--logo-size);
+    height: var(--logo-size);
     z-index: 1000;
     background: #ffffff;
     border: 2px solid var(--accent);
@@ -114,12 +114,13 @@ html, body {
 }
 
 /* ==========================================================================
-   2. HEADER ENCADRÉ FIGÉ CÔTE À CÔTE (Démarrant juste après le logo)
+   2. HEADER POUSSÉ À DROITE (Côte à côte avec le logo, même hauteur 30mm)
    ========================================================================== */
 .site-header {
     position: fixed;
     top: 8px;
-    left: calc(var(--side-margin) + var(--logo-w) + var(--top-gap));
+    /* Poussé exactement après la marge de 1cm + le logo de 30mm + l'espace de 10px */
+    left: calc(var(--side-margin) + var(--logo-size) + var(--top-gap));
     right: var(--side-margin);
     height: var(--header-h);
     z-index: 1000;
@@ -143,12 +144,12 @@ html, body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    gap: 2px;
+    gap: 3px;
     width: 100%;
 }
 
 .header-title {
-    font-size: 1.48rem;
+    font-size: 1.55rem;
     font-weight: 800;
     color: var(--text-primary);
     line-height: 1.15;
@@ -156,14 +157,14 @@ html, body {
 }
 
 .header-subtitle {
-    font-size: 0.85rem;
+    font-size: 0.88rem;
     font-weight: 500;
     color: var(--text-secondary);
     line-height: 1.2;
 }
 
 .header-brand {
-    font-size: 0.76rem;
+    font-size: 0.78rem;
     font-weight: 600;
     color: var(--text-muted);
     letter-spacing: 0.03em;
@@ -733,8 +734,8 @@ button:disabled {
 @media (max-width: 900px) {
     :root {
         --side-margin: 12px;
-        --header-h: 82px;
-        --logo-w: 82px;
+        --logo-size: 24mm;
+        --header-h: 24mm;
     }
     .header-title { font-size: 1.18rem; }
     .header-subtitle { font-size: 0.76rem; }
@@ -744,8 +745,8 @@ button:disabled {
 @media (max-width: 600px) {
     :root {
         --side-margin: 8px;
-        --header-h: 72px;
-        --logo-w: 72px;
+        --logo-size: 20mm;
+        --header-h: 20mm;
         --top-gap: 6px;
     }
     .header-brand { display: none; }
