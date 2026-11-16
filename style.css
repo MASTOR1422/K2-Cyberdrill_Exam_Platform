@@ -1,54 +1,34 @@
 /* ==========================================================================
-   K2-CYBERDRILL EXAM PLATFORM — PROFESSIONAL STYLESHEET
-   Enterprise Theme: Windows 7 Aero Emerald / Modern Enterprise Dashboard
+   K2-CYBERDRILL EXAM PLATFORM — WINDOWS 10 PROFESSIONAL ENTERPRISE THEME
    Engineered for: K-2 GLOBAL BUSINESS S.A.R.L.U.
    Architect: Ananias KASANDA (IT-DevSecOps)
    ========================================================================== */
 
 :root {
-    /* Palette Aero Enterprise Green */
-    --win7-bg-start: #013b27;
-    --win7-bg-end: #074f38;
-    --win7-glass: rgba(255, 255, 255, 0.08);
-    --win7-glass-strong: rgba(255, 255, 255, 0.16);
-    --win7-border: rgba(255, 255, 255, 0.22);
-    --win7-border-strong: rgba(255, 255, 255, 0.40);
-    --win7-titlebar-start: #074f38;
-    --win7-titlebar-end: #013b27;
+    /* Palette Windows 10 Enterprise / Fluent Steel & Blue */
+    --win10-bg: #1e1e1e;
+    --win10-header-bg: #2d2d30;
+    --win10-card-bg: #252526;
+    --win10-border: #3f3f46;
+    --win10-accent: #0078d4;
+    --win10-accent-hover: #1084d8;
+    --win10-accent-active: #005a9e;
 
-    --emerald-50: #ecfdf5;
-    --emerald-100: #d1fae5;
-    --emerald-200: #a7f3d0;
-    --emerald-300: #6ee7b7;
-    --emerald-400: #34d399;
-    --emerald-500: #10b981;
-    --emerald-600: #059669;
-    --emerald-700: #047857;
-    --emerald-800: #065f46;
+    --text-primary: #f3f3f3;
+    --text-secondary: #cccccc;
+    --text-muted: #969696;
 
-    --text-primary: #f1f8f5;
-    --text-secondary: #bce3d0;
-    --text-muted: #7ca994;
-    --text-dark: #022c1c;
+    --success: #107c10;
+    --success-bg: rgba(16, 124, 16, 0.15);
+    --danger: #e81123;
+    --danger-bg: rgba(232, 17, 35, 0.15);
+    --warning: #ffb900;
 
-    --danger: #ef4444;
-    --danger-bg: rgba(239, 68, 68, 0.15);
-    --success: #22c55e;
-    --success-bg: rgba(34, 197, 94, 0.15);
-    --warning: #f59e0b;
-    --warning-bg: rgba(245, 158, 11, 0.15);
+    --radius-win10: 4px;
+    --shadow-win10: 0 4px 16px rgba(0, 0, 0, 0.4);
 
-    --radius-sm: 6px;
-    --radius-md: 10px;
-    --radius-lg: 14px;
-
-    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
-    --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.3);
-    --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.4);
-    --shadow-glow: 0 0 0 1px rgba(110, 231, 183, 0.3), 0 4px 12px rgba(16, 185, 129, 0.2);
-
-    --font-sans: "Segoe UI", system-ui, -apple-system, sans-serif;
-    --font-mono: "Cascadia Code", "Consolas", monospace;
+    --font-sans: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    --font-mono: "Consolas", "Courier New", monospace;
 }
 
 *, *::before, *::after {
@@ -57,7 +37,7 @@
     padding: 0;
 }
 
-/* Verrouillage du viewport pour une expérience application web native */
+/* Verrouillage du viewport : Page unique sans scroll global */
 html, body {
     width: 100%;
     height: 100vh;
@@ -65,194 +45,196 @@ html, body {
     overflow: hidden;
     font-family: var(--font-sans);
     color: var(--text-primary);
-    background: linear-gradient(135deg, var(--win7-bg-start) 0%, var(--win7-bg-end) 100%);
+    background-color: var(--win10-bg);
     display: flex;
     flex-direction: column;
 }
 
-/* Arrière-plan décoratif subtil */
-.aero-bg {
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background:
-        radial-gradient(circle at 15% 10%, rgba(255, 255, 255, 0.07) 0%, transparent 40%),
-        radial-gradient(circle at 85% 90%, rgba(167, 243, 208, 0.05) 0%, transparent 50%);
+/* ---------------- 1. HEADER WINDOWS 10 (Figé en haut) ---------------- */
+.win10-header {
+    flex: 0 0 auto;
+    height: 80px; /* Espace ample pour un grand logo */
+    background-color: var(--win10-header-bg);
+    border-bottom: 1px solid var(--win10-border);
+    display: flex;
+    align-items: center;
+    padding: 0 1cm; /* Respect exact de la consigne de 1cm des deux côtés */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    z-index: 100;
 }
 
-/* ---------------- 1. TITLEBAR (FIGÉ EN HAUT) ---------------- */
-.win7-titlebar {
-    flex: 0 0 auto;
-    height: 34px;
-    z-index: 100;
+.header-inner {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 14px;
-    background: linear-gradient(to bottom, #0a6b4a 0%, #04422d 100%);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
-}
-
-.win7-title-text {
-    color: #fff;
-    font-size: 0.82rem;
-    font-weight: 600;
-    letter-spacing: 0.03em;
-    flex: 1;
-    text-align: center;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
-}
-
-.win7-window-controls {
-    display: flex;
-    gap: 6px;
-    align-items: center;
-}
-
-.win7-window-controls .wc {
-    width: 11px;
-    height: 11px;
-    border-radius: 50%;
-    display: inline-block;
-    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5);
-}
-
-.wc-min { background: #fbbf24; }
-.wc-max { background: #34d399; }
-.wc-close { background: #f87171; }
-
-/* ---------------- 2. CONTENEUR PRINCIPAL (DASHBOARD) ---------------- */
-.container {
-    flex: 1 1 auto;
-    min-height: 0;
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 14px 20px;
-    background: var(--win7-glass);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-left: 1px solid var(--win7-border);
-    border-right: 1px solid var(--win7-border);
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    overflow: hidden;
-}
-
-/* ---------------- 3. BRANDING BLOCK ---------------- */
-.branding {
-    flex: 0 0 auto;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    padding: 10px 16px;
-    border-radius: var(--radius-md);
-    background: rgba(0, 0, 0, 0.22);
-    border: 1px solid var(--win7-border);
-    box-shadow: var(--shadow-sm);
 }
 
 .brand-logo {
-    width: 48px;
-    height: 48px;
-    border-radius: 8px;
-    object-fit: cover;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    background: #fff;
+    height: 64px;
+    width: 64px;
+    object-fit: contain;
+    border-radius: var(--radius-win10);
+    background: #ffffff;
+    padding: 2px;
+    border: 1px solid var(--win10-border);
     flex-shrink: 0;
 }
 
-.brand-text h2 {
-    margin: 0 0 2px;
-    color: #fff;
-    font-size: 0.98rem;
-    font-weight: 700;
-    letter-spacing: 0.02em;
+.header-titles {
+    flex: 1;
+    text-align: center; /* Textes parfaitement centrés */
+    padding: 0 20px;
 }
 
-.brand-text p {
-    margin: 0;
-    color: var(--text-secondary);
-    font-size: 0.78rem;
-}
-
-.brand-text .role {
-    color: var(--emerald-300);
-    font-weight: 600;
-}
-
-h1 {
-    flex: 0 0 auto;
-    margin: 0;
-    color: #ffffff;
+.header-titles h1 {
     font-size: 1.25rem;
     font-weight: 600;
-    text-align: center;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+    color: #ffffff;
+    letter-spacing: 0.02em;
+    margin-bottom: 2px;
 }
 
-.subtitle {
-    flex: 0 0 auto;
-    margin: 0;
-    text-align: center;
+.header-titles p {
+    font-size: 0.8rem;
     color: var(--text-secondary);
-    font-size: 0.82rem;
 }
 
-/* ---------------- 4. PROGRESS BAR ---------------- */
-.exam-progress {
-    flex: 0 0 auto;
-    height: 6px;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 999px;
-    overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.15);
+.header-titles .role {
+    color: #61afef;
+    font-weight: 600;
 }
 
-.exam-progress-bar {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, var(--emerald-400), var(--emerald-200));
-    border-radius: 999px;
-    transition: width 0.3s ease;
-    box-shadow: 0 0 8px rgba(110, 231, 183, 0.5);
+.win10-controls {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    flex-shrink: 0;
 }
 
-/* ---------------- 5. TOOLBAR & ONGLETS CÔTE À CÔTE ---------------- */
-.toolbar {
-    flex: 0 0 auto;
+.win10-controls .wc {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+}
+.wc-min { background: var(--warning); }
+.wc-max { background: var(--success); }
+.wc-close { background: var(--danger); }
+
+/* ---------------- 2. CONTENEUR PRINCIPAL (Marges 1cm gauche/droite) ---------------- */
+.app-container {
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
+    padding: 12px 1cm; /* 1 cm de marge à gauche et à droite */
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
+    overflow: hidden;
 }
 
+/* ---------------- 3. TOOLBAR ET ONGLETS CÔTE À CÔTE SUR TOUT L'ESPACE ---------------- */
+.top-dashboard-bar {
+    flex: 0 0 auto;
+    background: var(--win10-card-bg);
+    border: 1px solid var(--win10-border);
+    border-radius: var(--radius-win10);
+    padding: 10px 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: var(--shadow-win10);
+}
+
+.toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+}
+
+/* Les onglets s'étalent uniformément sur tout l'espace disponible côte à côte */
 .exam-list {
     display: flex;
     align-items: center;
     gap: 8px;
+    flex: 1 1 auto;
+    width: 100%;
     overflow-x: auto;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
-    padding-bottom: 4px;
+    scrollbar-width: none;
 }
 
 .exam-list::-webkit-scrollbar {
-    height: 4px;
+    display: none;
 }
-.exam-list::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
+
+/* Boutons d'onglets répartis uniformément */
+.exam-list button,
+.exam-tab,
+.exam-btn {
+    flex: 1 1 0;
+    min-width: 0;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 8px 12px;
+    background: #2d2d30;
+    color: var(--text-primary);
+    border: 1px solid var(--win10-border);
+    border-radius: var(--radius-win10);
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s;
+}
+
+.exam-list button:hover,
+.exam-tab:hover,
+.exam-btn:hover {
+    background: #3e3e42;
+    border-color: var(--win10-accent);
+}
+
+.exam-list button.active,
+.exam-list button[aria-selected="true"],
+.exam-tab.active,
+.exam-btn.active {
+    background: var(--win10-accent);
+    color: #ffffff;
+    border-color: var(--win10-accent);
 }
 
 .toolbar-actions {
     display: flex;
     gap: 8px;
-    justify-content: flex-end;
+    flex-shrink: 0;
 }
 
+.btn-win10 {
+    padding: 8px 14px;
+    background: #333337;
+    color: var(--text-primary);
+    border: 1px solid var(--win10-border);
+    border-radius: var(--radius-win10);
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    transition: background 0.15s;
+}
+
+.btn-win10:hover {
+    background: #3e3e42;
+    border-color: var(--win10-accent);
+}
+
+/* Filtres thématiques alignés */
 .theme-list {
     flex: 0 0 auto;
     display: flex;
@@ -260,197 +242,157 @@ h1 {
     gap: 6px;
     overflow-x: auto;
     scrollbar-width: none;
-    padding: 8px 12px;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: var(--radius-sm);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 4px;
+    border-top: 1px solid var(--win10-border);
 }
 
 .theme-list::-webkit-scrollbar {
     display: none;
 }
 
-/* ---------------- 6. BUTTONS & TABS ---------------- */
-.btn, button {
-    font-family: inherit;
-    font-size: 0.82rem;
-    font-weight: 600;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: var(--radius-sm);
-    padding: 8px 14px;
+.theme-btn, .theme-tab {
+    padding: 4px 10px;
+    background: #2d2d30;
+    color: var(--text-secondary);
+    border: 1px solid var(--win10-border);
+    border-radius: var(--radius-win10);
+    font-size: 0.75rem;
     cursor: pointer;
-    color: #fff;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.03));
-    transition: all 0.15s ease;
-    box-shadow: var(--shadow-sm);
     white-space: nowrap;
 }
 
-.btn:hover, button:hover {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.08));
-    border-color: var(--win7-border-strong);
+.theme-btn.active, .theme-tab.active {
+    background: var(--win10-accent);
+    color: #fff;
+    border-color: var(--win10-accent);
 }
 
-.exam-btn, .theme-btn {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.2));
-    color: var(--text-secondary);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    padding: 7px 14px;
-    font-size: 0.78rem;
+/* Barre de progression Windows 10 */
+.exam-progress {
     flex: 0 0 auto;
+    height: 4px;
+    background: #3f3f46;
+    border-radius: 99px;
+    overflow: hidden;
 }
 
-.exam-btn:hover, .theme-btn:hover {
-    color: #fff;
-    border-color: var(--emerald-300);
+.exam-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--win10-accent);
+    transition: width 0.3s ease;
 }
 
-.exam-btn.active, .theme-btn.active {
-    background: linear-gradient(180deg, var(--emerald-400) 0%, var(--emerald-600) 100%);
-    color: var(--text-dark);
-    border-color: var(--emerald-300);
-    box-shadow: var(--shadow-glow);
-    font-weight: 700;
-}
-
-.btn-ghost, .file-import-label {
-    background: transparent;
-    border: 1px dashed rgba(255, 255, 255, 0.35);
-    color: var(--text-secondary);
-}
-
-.btn-ghost:hover, .file-import-label:hover {
-    color: #fff;
-    border-color: var(--emerald-300);
-    background: rgba(16, 185, 129, 0.15);
-}
-
-.btn.primary {
-    background: linear-gradient(180deg, var(--emerald-400) 0%, var(--emerald-700) 100%);
-    color: var(--text-dark);
-    border-color: var(--emerald-300);
-}
-
-.file-import-label {
-    display: inline-flex;
-    align-items: center;
-    cursor: pointer;
-    padding: 6px 12px;
-    font-size: 0.78rem;
-    border-radius: var(--radius-sm);
-}
-
-/* ---------------- 7. TIMER & STATS ---------------- */
+/* ---------------- 4. STATISTIQUES & CHRONO ---------------- */
 .timer-display {
     flex: 0 0 auto;
     text-align: center;
-    margin: 0 auto;
-    padding: 6px 16px;
-    border-radius: var(--radius-sm);
+    padding: 6px 14px;
+    background: var(--win10-card-bg);
+    border: 1px solid var(--win10-border);
+    border-radius: var(--radius-win10);
     font-weight: 700;
-    font-size: 0.92rem;
-    background: rgba(0, 0, 0, 0.35);
-    color: var(--emerald-200);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: 0.9rem;
+    color: #61afef;
     font-variant-numeric: tabular-nums;
 }
 
 .stats-panel {
     flex: 0 0 auto;
+    background: var(--win10-card-bg);
+    border: 1px solid var(--win10-border);
+    border-radius: var(--radius-win10);
     padding: 12px 16px;
-    border-radius: var(--radius-md);
-    background: rgba(0, 0, 0, 0.25);
-    border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .stats-panel h3 {
-    margin: 0 0 8px;
-    color: var(--emerald-200);
-    font-size: 0.88rem;
+    font-size: 0.9rem;
+    color: #ffffff;
+    margin-bottom: 8px;
 }
 
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 8px;
 }
 
 .stat-card {
+    background: #1e1e1e;
+    border: 1px solid var(--win10-border);
     padding: 8px 10px;
-    border-radius: var(--radius-sm);
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-win10);
 }
 
 .stat-card .stat-value {
-    display: block;
-    font-size: 1.3rem;
+    font-size: 1.25rem;
     font-weight: 700;
-    color: var(--emerald-200);
+    color: var(--win10-accent);
 }
 
 .stat-card .stat-label {
     font-size: 0.7rem;
-    text-transform: uppercase;
     color: var(--text-muted);
+    text-transform: uppercase;
 }
 
-/* ---------------- 8. QUIZ CONTAINER (SCROLLABLE INTERNE) ---------------- */
+/* ---------------- 5. ZONE DU QUIZ (Scrollable en interne) ---------------- */
 .quiz-container {
     flex: 1 1 auto;
     min-height: 0;
     overflow-y: auto;
+    background: var(--win10-card-bg);
+    border: 1px solid var(--win10-border);
+    border-radius: var(--radius-win10);
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    padding-right: 4px;
+    box-shadow: var(--shadow-win10);
 }
 
 .quiz-container::-webkit-scrollbar {
     width: 6px;
 }
 .quiz-container::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 4px;
+    background: #3f3f46;
+    border-radius: 3px;
 }
 
 .question-card, .results-card {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03));
-    border: 1px solid var(--win7-border);
-    border-radius: var(--radius-md);
-    padding: 18px 22px;
-    box-shadow: var(--shadow-md);
+    background: #1e1e1e;
+    border: 1px solid var(--win10-border);
+    border-radius: var(--radius-win10);
+    padding: 18px;
 }
 
 .question-header {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    gap: 10px;
-    color: var(--emerald-200);
-    font-size: 0.75rem;
+    align-items: center;
+    font-size: 0.78rem;
+    color: var(--text-muted);
     text-transform: uppercase;
     margin-bottom: 10px;
 }
 
 .theme-badge {
-    background: rgba(16, 185, 129, 0.2);
-    color: var(--emerald-100);
-    border: 1px solid rgba(16, 185, 129, 0.5);
-    border-radius: 999px;
-    padding: 3px 10px;
-    font-size: 0.75rem;
+    background: rgba(0, 120, 212, 0.2);
+    color: #61afef;
+    border: 1px solid rgba(0, 120, 212, 0.4);
+    padding: 2px 10px;
+    border-radius: 99px;
     font-weight: 600;
     text-transform: none;
 }
 
 .question-card h3, .results-card h2 {
-    margin: 6px 0 14px;
-    color: #ffffff;
     font-size: 1.05rem;
-    line-height: 1.45;
+    color: #ffffff;
+    margin-bottom: 14px;
+    line-height: 1.4;
 }
 
-/* Options en grille 2 colonnes pour un affichage pro type dashboard */
+/* Grille 2 colonnes pour les options */
 .answers {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -461,127 +403,160 @@ h1 {
 .option-item {
     display: flex;
     align-items: flex-start;
-    gap: 12px;
-    background: rgba(0, 0, 0, 0.25);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: var(--radius-sm);
-    padding: 12px 14px;
+    gap: 10px;
+    background: #2d2d30;
+    border: 1px solid var(--win10-border);
+    border-radius: var(--radius-win10);
+    padding: 12px;
     cursor: pointer;
-    transition: all 0.15s ease;
+    transition: background 0.15s, border-color 0.15s;
 }
 
 .option-item:hover {
-    border-color: var(--emerald-300);
-    background: rgba(16, 185, 129, 0.12);
+    background: #3e3e42;
+    border-color: var(--win10-accent);
 }
 
 .option-item input[type="radio"] {
-    margin-top: 3px;
-    accent-color: var(--emerald-400);
+    accent-color: var(--win10-accent);
     width: 16px;
     height: 16px;
+    margin-top: 2px;
     flex-shrink: 0;
 }
 
 .option-item.selected {
-    border-color: var(--emerald-300);
-    background: rgba(16, 185, 129, 0.2);
+    background: rgba(0, 120, 212, 0.15);
+    border-color: var(--win10-accent);
 }
 
 .option-item span {
-    color: var(--text-primary);
     font-size: 0.9rem;
-    line-height: 1.35;
+    color: var(--text-primary);
 }
 
-/* Feedback professionnel */
+/* Feedback */
 .feedback {
     margin-top: 14px;
-    border-radius: var(--radius-sm);
     padding: 12px 16px;
-    border: 1px solid transparent;
+    border-radius: var(--radius-win10);
     font-size: 0.88rem;
+    border: 1px solid transparent;
 }
 
 .feedback strong {
     display: block;
-    font-size: 0.98rem;
-    margin-bottom: 6px;
-}
-
-.feedback p {
-    margin: 4px 0;
-    color: var(--text-secondary);
-    line-height: 1.5;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
 }
 
 .feedback.correct {
     background: var(--success-bg);
-    border-color: rgba(34, 197, 94, 0.5);
-    color: #ecfdf5;
+    border-color: rgba(16, 124, 16, 0.4);
+    color: #d1fae5;
 }
-.feedback.correct strong { color: var(--success); }
+.feedback.correct strong { color: #22c55e; }
 
 .feedback.incorrect {
     background: var(--danger-bg);
-    border-color: rgba(239, 68, 68, 0.5);
-    color: #fff5f5;
+    border-color: rgba(232, 17, 35, 0.4);
+    color: #fee2e2;
 }
-.feedback.incorrect strong { color: var(--danger); }
+.feedback.incorrect strong { color: #f87171; }
 
 /* Navigation */
 .navigation {
     display: flex;
     justify-content: space-between;
-    gap: 12px;
+    gap: 10px;
     margin-top: 16px;
 }
 
 .navigation button {
     flex: 1;
     padding: 10px 16px;
+    background: #333337;
+    color: #fff;
+    border: 1px solid var(--win10-border);
+    border-radius: var(--radius-win10);
+    font-weight: 600;
+    cursor: pointer;
 }
 
-/* Results */
-.review-item {
-    margin: 10px 0;
-    padding: 12px 14px;
-    border-radius: var(--radius-sm);
-    background: rgba(0, 0, 0, 0.2);
-    font-size: 0.88rem;
+.navigation button:hover {
+    background: var(--win10-accent);
+    border-color: var(--win10-accent);
 }
 
+/* Results & Banner */
 .score-banner {
     text-align: center;
-    margin: 12px 0;
     padding: 16px;
-    border-radius: var(--radius-md);
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(0, 0, 0, 0.25));
-    border: 1px solid rgba(16, 185, 129, 0.4);
+    background: #1e1e1e;
+    border: 1px solid var(--win10-border);
+    border-radius: var(--radius-win10);
+    margin-bottom: 12px;
 }
 
 .score-banner .big {
     font-size: 2rem;
-    font-weight: 800;
-    color: var(--emerald-300);
+    font-weight: 700;
+    color: var(--win10-accent);
 }
 
-/* ---------------- 9. TOAST & FOOTER (FIGÉ EN BAS) ---------------- */
+.review-item {
+    background: #1e1e1e;
+    border: 1px solid var(--win10-border);
+    padding: 10px 14px;
+    border-radius: var(--radius-win10);
+    margin-bottom: 10px;
+}
+
+/* ---------------- 6. FOOTER WINDOWS 10 (Figé en bas) ---------------- */
+.win10-footer {
+    flex: 0 0 auto;
+    height: 38px;
+    background-color: var(--win10-header-bg);
+    border-top: 1px solid var(--win10-border);
+    padding: 0 1cm; /* Respect des 1cm de marge latérale */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    z-index: 100;
+}
+
+.win10-footer strong {
+    color: #ffffff;
+}
+
+.badge-devsecops {
+    background: var(--win10-accent);
+    color: #ffffff;
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    margin-left: 4px;
+}
+
+/* Toast */
 .toast {
     position: fixed;
+    bottom: 50px;
     left: 50%;
-    bottom: 45px;
-    transform: translateX(-50%) translateY(20px);
-    background: rgba(0, 0, 0, 0.92);
+    transform: translateX(-50%) translateY(15px);
+    background: #2d2d30;
     color: #fff;
     padding: 10px 18px;
-    border-radius: var(--radius-sm);
-    border: 1px solid var(--emerald-400);
+    border-radius: var(--radius-win10);
+    border: 1px solid var(--win10-accent);
+    box-shadow: var(--shadow-win10);
+    font-size: 0.85rem;
     z-index: 1000;
     opacity: 0;
     transition: opacity 0.2s ease, transform 0.2s ease;
-    font-size: 0.82rem;
-    box-shadow: var(--shadow-lg);
 }
 
 .toast.show {
@@ -589,28 +564,13 @@ h1 {
     transform: translateX(-50%) translateY(0);
 }
 
-.footer {
-    flex: 0 0 auto;
-    text-align: center;
-    color: var(--text-muted);
-    font-size: 0.75rem;
-    padding: 8px 16px;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(0, 0, 0, 0.2);
-    z-index: 100;
-}
-
-/* ---------------- RESPONSIVE OPTIMIZATION ---------------- */
+/* Responsive pour tablettes et mobiles */
 @media (max-width: 900px) {
-    .answers {
-        grid-template-columns: 1fr; /* Bascule sur 1 colonne pour tablettes et mobiles */
+    .win10-header, .win10-footer, .app-container {
+        padding-left: 12px;
+        padding-right: 12px; /* S'adapte sur petit écran si 1cm est trop large */
     }
-}
-
-@media (max-width: 600px) {
-    .container { padding: 8px 10px; }
-    .branding { padding: 8px 10px; gap: 10px; }
-    .brand-logo { width: 38px; height: 38px; }
-    .brand-text h2 { font-size: 0.88rem; }
-    h1 { font-size: 1.05rem; }
+    .answers {
+        grid-template-columns: 1fr;
+    }
 }
