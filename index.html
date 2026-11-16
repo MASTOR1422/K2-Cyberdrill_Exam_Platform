@@ -1,542 +1,76 @@
-/* ==========================================================================
-   K2-CYBERDRILL EXAM PLATFORM - FEUILLE DE STYLE PRINCIPALE
-   Thème : Windows 11 Fluent Design (Bleu Clair)
-   Structure : Header fixe + Footer fixe + Contenu central
-   ========================================================================== */
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0078d4">
+    <meta name="description" content="K2-Cyberdrill Exam Platform - Simulateur d'examens blancs CompTIA Security+ (SY0-701), CEH, OWASP, Pentest, Audit, IR et Kali Linux.">
+    <title>K2-Cyberdrill — Plateforme d'Examens Cybersécurité | K-2 Global Business</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/logo-256.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Fond décoratif Windows 11 Fluent -->
+    <div class="aero-bg" aria-hidden="true"></div>
 
-/* --- VARIABLES GLOBALES --- */
-:root {
-    /* Palette Bleu Windows 11 */
-    --bg-gradient-1: #eef5fc;
-    --bg-gradient-2: #d9e8f9;
-    --bg-gradient-3: #c5dcf6;
-    --accent: #0078d4;
-    --accent-strong: #005a9e;
-    --accent-light: #60a5fa;
-    --accent-soft: rgba(0, 120, 212, 0.1);
-    
-    /* Couleurs de surface (Glassmorphism) */
-    --glass-bg: rgba(255, 255, 255, 0.85);
-    --glass-bg-soft: rgba(255, 255, 255, 0.65);
-    --glass-border: rgba(0, 120, 212, 0.15);
-    
-    /* Couleurs de texte */
-    --text-primary: #0b1f3a;
-    --text-secondary: #3a5478;
-    --text-muted: #6b7f9c;
-    
-    /* Couleurs d'état */
-    --success: #107c10;
-    --success-bg: rgba(16, 124, 16, 0.1);
-    --danger: #d13438;
-    --danger-bg: rgba(209, 52, 56, 0.1);
-    --warning: #b7791f;
-    --warning-bg: rgba(183, 121, 31, 0.1);
-    
-    /* Ombres et Arrondis */
-    --radius-md: 10px;
-    --radius-lg: 14px;
-    --shadow-sm: 0 1px 3px rgba(15, 42, 86, 0.1);
-    --shadow-md: 0 4px 12px rgba(15, 42, 86, 0.12);
-    
-    /* Dimensions du Header et Footer (Hauteur du header optimisée) */
-    --header-h: 120px;
-    --footer-h: 46px;
-    
-    /* Polices */
-    --font-sans: "Segoe UI Variable", "Segoe UI", Tahoma, sans-serif;
-    --font-mono: "Cascadia Code", Consolas, monospace;
-}
+    <!-- HEADER INSTITUTIONNEL FIXE ET ENCADRÉ -->
+    <header class="site-header">
+        <div class="header-frame">
+            <img src="assets/logo-256.png" alt="Logo K-2 Global Business S.A.R.L.U." class="header-logo">
+            <div class="header-text">
+                <h1 class="header-title">K2-Cyberdrill Exam Platform</h1>
+                <p class="header-subtitle">Plateforme d'Entraînement aux Certifications Cybersécurité &bull; 848 questions techniques enrichies</p>
+                <p class="header-brand">K&#8209;2 GLOBAL BUSINESS S.A.R.L.U. &bull; Par Ananias KASANDA <span class="role">(IT&#8209;DevSecOps)</span></p>
+            </div>
+        </div>
+    </header>
 
-/* --- RÉINITIALISATION --- */
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+    <!-- CONTENEUR PRINCIPAL (Page unique sans scroll global, marges 1cm) -->
+    <main class="container" role="main">
+        <!-- Barre supérieure : Onglets côte à côte + Actions + Progression -->
+        <section class="top-controls" aria-label="Navigation et progression">
+            <div id="menu" class="toolbar" role="toolbar" aria-label="Barre d'outils">
+                <div id="exam-list" class="exam-list" role="tablist" aria-label="Choix de l'examen"></div>
+                <div class="toolbar-actions">
+                    <label class="btn btn-ghost file-import-label" tabindex="0">
+                        <span>&#10515; Importer JSON</span>
+                        <input id="json-upload" type="file" accept=".json,application/json" hidden>
+                    </label>
+                    <button type="button" class="btn btn-ghost" id="toggle-stats" aria-pressed="false">Statistiques</button>
+                </div>
+            </div>
 
-html {
-    scroll-behavior: smooth;
-    -webkit-text-size-adjust: 100%;
-}
+            <!-- Filtres thématiques côte à côte -->
+            <div id="theme-list" class="theme-list" role="tablist" aria-label="Filtrer par thème"></div>
 
-body {
-    font-family: var(--font-sans);
-    color: var(--text-primary);
-    background: linear-gradient(135deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 50%, var(--bg-gradient-3) 100%);
-    background-attachment: fixed;
-    line-height: 1.5;
-    min-height: 100vh;
-    overflow-x: hidden;
-    
-    /* Compense la hauteur du header et du footer fixes pour ne rien masquer */
-    padding-top: calc(var(--header-h) + env(safe-area-inset-top));
-    padding-bottom: calc(var(--footer-h) + env(safe-area-inset-bottom));
-}
+            <!-- Barre de progression + Chronomètre -->
+            <div class="status-strip">
+                <div class="exam-progress" aria-hidden="true">
+                    <div class="exam-progress-bar" id="exam-progress-bar"></div>
+                </div>
+                <div id="timer-display" class="timer-display" role="timer" aria-live="polite">Aucun examen lancé</div>
+            </div>
+        </section>
 
-/* Fond décoratif Fluent */
-.aero-bg {
-    position: fixed;
-    inset: 0;
-    z-index: -1;
-    pointer-events: none;
-    background:
-        radial-gradient(circle at 15% 10%, rgba(96, 165, 250, 0.3) 0%, transparent 40%),
-        radial-gradient(circle at 85% 90%, rgba(0, 120, 212, 0.15) 0%, transparent 50%);
-}
+        <!-- Panneau de statistiques (Repliable) -->
+        <section id="stats-panel" class="stats-panel" hidden aria-label="Statistiques de l'examen">
+            <h3>Statistiques de l'examen courant</h3>
+            <div id="stats-content" class="stats-grid"></div>
+        </section>
 
-/* ==========================================================================
-   HEADER INSTITUTIONNEL FIXE
-   ========================================================================== */
-.site-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    height: calc(var(--header-h) + env(safe-area-inset-top));
-    padding-top: env(safe-area-inset-top);
-    
-    /* Design Glassmorphism et encadrement */
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px) saturate(160%);
-    -webkit-backdrop-filter: blur(20px) saturate(160%);
-    border-bottom: 2px solid var(--accent); /* La barre d'encadrement demandée */
-    box-shadow: 0 4px 15px rgba(15, 42, 86, 0.08);
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+        <!-- Zone centrale du Quiz -->
+        <section id="quiz-container" class="quiz-container" role="region" aria-live="polite" aria-label="Zone de question"></section>
+    </main>
 
-.header-inner {
-    display: flex;
-    flex-direction: column; /* Empile le logo et les textes */
-    align-items: center;    /* Centre horizontalement */
-    justify-content: center;
-    text-align: center;
-    gap: 2px;               /* Espace minimal entre les éléments */
-    width: 100%;
-    padding: 0 15px;
-}
+    <!-- FOOTER INSTITUTIONNEL FIXE -->
+    <footer class="footer">
+        <span>&copy; 2026 <strong>K&#8209;2 GLOBAL BUSINESS S.A.R.L.U.</strong> &mdash; Tous droits réservés. &bull; Développé par <strong>Ananias KASANDA</strong> <span class="role">(IT&#8209;DevSecOps)</span></span>
+    </footer>
 
-.header-logo {
-    width: 42px;
-    height: 42px;
-    object-fit: contain;
-    border-radius: 8px;
-    background: #fff;
-    box-shadow: 0 1px 4px rgba(0, 120, 212, 0.2);
-}
+    <!-- Notification Toast -->
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
 
-.header-title {
-    font-size: 1.35rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    line-height: 1.2;
-}
-
-.header-subtitle {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    line-height: 1.2;
-}
-
-.header-brand {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    line-height: 1.2;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.header-brand .role {
-    color: var(--accent);
-    font-weight: 600;
-}
-
-/* ==========================================================================
-   CONTENEUR PRINCIPAL
-   ========================================================================== */
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 24px 20px;
-    background: var(--glass-bg-soft);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-left: 1px solid var(--glass-border);
-    border-right: 1px solid var(--glass-border);
-    min-height: calc(100vh - var(--header-h) - var(--footer-h));
-}
-
-/* --- BARRE DE PROGRESSION --- */
-.exam-progress {
-    height: 6px;
-    background: rgba(0, 120, 212, 0.12);
-    border-radius: 999px;
-    overflow: hidden;
-    margin-bottom: 24px;
-}
-
-.exam-progress-bar {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, var(--accent-light), var(--accent));
-    border-radius: 999px;
-    transition: width 0.3s ease;
-}
-
-/* ==========================================================================
-   ONGLETS ET BOUTONS
-   ========================================================================== */
-.toolbar {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    margin-bottom: 20px;
-}
-
-/* Alignement parfait des onglets côte à côte */
-.exam-list,
-.theme-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    justify-content: center;
-    align-items: stretch;
-}
-
-.theme-list {
-    padding: 12px;
-    background: rgba(255, 255, 255, 0.5);
-    border-radius: var(--radius-md);
-    border: 1px solid var(--glass-border);
-}
-
-.toolbar-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-}
-
-/* Styles communs aux boutons */
-.btn, button {
-    font-family: inherit;
-    font-size: 0.9rem;
-    font-weight: 600;
-    padding: 10px 18px;
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    border: 1px solid rgba(0, 120, 212, 0.2);
-    background: #fff;
-    color: var(--text-primary);
-    transition: all 0.2s ease;
-    box-shadow: var(--shadow-sm);
-    user-select: none;
-    min-height: 42px;
-}
-
-.btn:hover, button:hover {
-    border-color: var(--accent);
-    box-shadow: var(--shadow-md);
-    transform: translateY(-1px);
-}
-
-/* Onglets Examen / Thème */
-.exam-btn, .theme-btn {
-    flex: 1 1 auto;
-    min-width: 130px;
-    background: rgba(255, 255, 255, 0.7);
-    color: var(--text-secondary);
-    border-radius: 999px;
-    padding: 8px 16px;
-    font-size: 0.85rem;
-}
-
-.exam-btn.active, .theme-btn.active {
-    background: var(--accent);
-    color: #fff;
-    border-color: var(--accent-strong);
-    box-shadow: 0 2px 8px rgba(0, 120, 212, 0.3);
-}
-
-/* Boutons fantômes (Import, Stats) */
-.btn-ghost {
-    background: transparent;
-    border: 1px dashed var(--accent);
-    color: var(--accent-strong);
-    box-shadow: none;
-}
-
-.btn-ghost:hover {
-    background: var(--accent-soft);
-}
-
-/* ==========================================================================
-   ZONE DE JEU (QUIZ, STATS, TIMER)
-   ========================================================================== */
-.timer-display {
-    text-align: center;
-    padding: 12px;
-    margin-bottom: 20px;
-    background: #fff;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--glass-border);
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: var(--accent-strong);
-    font-variant-numeric: tabular-nums;
-}
-
-.timer-display.warning { background: var(--warning-bg); color: var(--warning); }
-.timer-display.critical { background: var(--danger-bg); color: var(--danger); animation: pulse 1s infinite; }
-
-.stats-panel {
-    margin-bottom: 20px;
-    padding: 16px;
-    background: rgba(255, 255, 255, 0.7);
-    border-radius: var(--radius-md);
-    border: 1px solid var(--glass-border);
-}
-
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 12px;
-    margin-top: 12px;
-}
-
-.stat-card {
-    padding: 12px;
-    background: #fff;
-    border-radius: var(--radius-md);
-    border: 1px solid var(--glass-border);
-    text-align: center;
-}
-
-.stat-value {
-    display: block;
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--accent-strong);
-}
-
-.stat-label {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    margin-top: 4px;
-}
-
-/* Cartes de questions */
-.question-card, .results-card {
-    background: #fff;
-    border-radius: var(--radius-lg);
-    padding: 24px;
-    border: 1px solid var(--glass-border);
-    box-shadow: var(--shadow-md);
-}
-
-.question-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 16px;
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-}
-
-.theme-badge {
-    background: var(--accent-soft);
-    color: var(--accent-strong);
-    padding: 4px 12px;
-    border-radius: 999px;
-    font-weight: 600;
-    text-transform: none;
-}
-
-.question-card h3 {
-    font-size: 1.1rem;
-    margin-bottom: 20px;
-    line-height: 1.4;
-}
-
-/* Options de réponse */
-.answers {
-    display: grid;
-    gap: 10px;
-}
-
-.option-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 12px;
-    padding: 14px;
-    background: rgba(255, 255, 255, 0.8);
-    border: 1px solid var(--glass-border);
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    transition: all 0.15s ease;
-}
-
-.option-item:hover {
-    background: #fff;
-    border-color: var(--accent);
-}
-
-.option-item input[type="radio"] {
-    margin-top: 3px;
-    accent-color: var(--accent);
-    width: 18px;
-    height: 18px;
-}
-
-.option-item span {
-    font-size: 0.95rem;
-    color: var(--text-primary);
-}
-
-.option-item.selected {
-    border-color: var(--accent);
-    background: var(--accent-soft);
-}
-
-/* Feedback (Correction) */
-.feedback {
-    margin-top: 20px;
-    padding: 16px;
-    border-radius: var(--radius-md);
-    border: 1px solid transparent;
-}
-
-.feedback.correct { background: var(--success-bg); border-color: var(--success); }
-.feedback.incorrect { background: var(--danger-bg); border-color: var(--danger); }
-
-.feedback strong { display: block; margin-bottom: 8px; font-size: 1.05rem; }
-.feedback.correct strong { color: var(--success); }
-.feedback.incorrect strong { color: var(--danger); }
-
-.feedback p { color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 8px; }
-.feedback code { background: rgba(0, 0, 0, 0.05); padding: 2px 6px; border-radius: 4px; font-family: var(--font-mono); color: var(--accent-strong); }
-
-/* Navigation et Résultats */
-.navigation {
-    display: flex;
-    gap: 12px;
-    margin-top: 24px;
-}
-
-.navigation button {
-    flex: 1;
-}
-
-.score-banner {
-    text-align: center;
-    padding: 24px;
-    background: var(--accent-soft);
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--accent);
-    margin-bottom: 20px;
-}
-
-.score-banner .big { font-size: 2.5rem; font-weight: 800; color: var(--accent-strong); }
-.score-banner.pass .big { color: var(--success); }
-.score-banner.fail .big { color: var(--danger); }
-
-/* ==========================================================================
-   FOOTER FIXE
-   ========================================================================== */
-.footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 999;
-    height: calc(var(--footer-h) + env(safe-area-inset-bottom));
-    padding-bottom: env(safe-area-inset-bottom);
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    
-    background: var(--glass-bg);
-    backdrop-filter: blur(20px) saturate(160%);
-    -webkit-backdrop-filter: blur(20px) saturate(160%);
-    border-top: 1px solid var(--glass-border);
-    color: var(--text-muted);
-    font-size: 0.8rem;
-}
-
-/* ==========================================================================
-   NOTIFICATIONS (TOAST)
-   ========================================================================== */
-.toast {
-    position: fixed;
-    bottom: calc(var(--footer-h) + 20px);
-    left: 50%;
-    transform: translateX(-50%) translateY(20px);
-    background: var(--text-primary);
-    color: #fff;
-    padding: 12px 24px;
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-md);
-    z-index: 1100;
-    opacity: 0;
-    transition: all 0.3s ease;
-    pointer-events: none;
-}
-
-.toast.show {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-}
-
-/* ==========================================================================
-   RESPONSIVE DESIGN (Tablettes & Mobiles)
-   ========================================================================== */
-@media (max-width: 768px) {
-    :root {
-        --header-h: 110px; /* Header un peu plus petit sur tablette */
-        --footer-h: 40px;
-    }
-    
-    .header-logo { width: 36px; height: 36px; }
-    .header-title { font-size: 1.1rem; }
-    .header-brand { display: none; } /* On masque la ligne institutionnelle sur mobile */
-    
-    .container { padding: 16px; }
-    
-    .exam-btn, .theme-btn {
-        flex: 1 1 calc(50% - 8px); /* 2 boutons par ligne */
-    }
-    
-    .navigation { flex-direction: column; }
-}
-
-@media (max-width: 480px) {
-    :root {
-        --header-h: 95px;
-        --footer-h: 36px;
-    }
-    
-    .header-logo { width: 30px; height: 30px; }
-    .header-title { font-size: 0.95rem; }
-    .header-subtitle { font-size: 0.75rem; }
-    
-    .exam-btn, .theme-btn {
-        flex: 1 1 100%; /* 1 bouton par ligne sur très petit écran */
-    }
-    
-    .question-card { padding: 16px; }
-}
-
-/* Animation pour le timer critique */
-@keyframes pulse {
-    0% { opacity: 1; }
-    50% { opacity: 0.6; }
-    100% { opacity: 1; }
-}
+    <script src="app.js"></script>
+</body>
+</html>
