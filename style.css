@@ -1,7 +1,7 @@
 /* ==========================================================================
    K2-CYBERDRILL EXAM PLATFORM - FEUILLE DE STYLE PRINCIPALE
    Thème : Windows 11 Fluent Design (Bleu Clair)
-   Structure : Logo externe (50mm) + Header encadré & figé + Page unique
+   Structure : Logo fixe (30mm) + Header fixe encadré côte à côte + Page unique
    Conception : Ananias KASANDA (IT-DevSecOps) | K-2 GLOBAL BUSINESS S.A.R.L.U.
    ========================================================================== */
 
@@ -44,9 +44,10 @@
     --shadow-lg: 0 10px 30px rgba(15, 42, 86, 0.18);
     --shadow-glow: 0 0 0 2px rgba(0, 120, 212, 0.22), 0 4px 12px rgba(0, 120, 212, 0.18);
 
-    /* Dimensions fixes Header / Logo externe / Footer / Marges */
+    /* Dimensions exactes : Logo (30mm) + Écart (10px) + Header (92px) + Marges (1cm) */
     --header-h: 92px;
-    --logo-w: 50mm;
+    --logo-w: 30mm;
+    --top-gap: 10px;
     --footer-h: 40px;
     --side-margin: 1cm;
 
@@ -65,7 +66,7 @@ html, body {
     width: 100%;
     height: 100vh;
     height: 100dvh;
-    overflow: hidden; /* Verrouille la page : aucun scroll global */
+    overflow: hidden; /* Page unique : aucun défilement global */
     font-family: var(--font-sans);
     color: var(--text-primary);
     background: linear-gradient(135deg, var(--bg-gradient-1) 0%, var(--bg-gradient-2) 55%, var(--bg-gradient-3) 100%);
@@ -73,7 +74,6 @@ html, body {
     -webkit-text-size-adjust: 100%;
 }
 
-/* Fond décoratif Fluent */
 .aero-bg {
     position: fixed;
     inset: 0;
@@ -86,54 +86,51 @@ html, body {
 }
 
 /* ==========================================================================
-   1. BANDEAU SUPÉRIEUR FIXE : LOGO EXTERNE (50mm) + HEADER ENCADRÉ CÔTE À CÔTE
+   1. BLOC LOGO FIGÉ À GAUCHE (En dehors du header, largeur 30mm, même hauteur)
    ========================================================================== */
-.top-banner-wrapper {
+.fixed-logo-box {
     position: fixed;
     top: 8px;
     left: var(--side-margin);
-    right: var(--side-margin);
-    z-index: 1000;
-    height: var(--header-h);
-    display: flex;
-    flex-direction: row;
-    align-items: stretch;
-    gap: 12px; /* Sépare visuellement les deux objets distincts */
-}
-
-/* Objet 1 : Conteneur du Logo en dehors du header (largeur ~50mm, hauteur = header) */
-.external-logo-box {
-    flex: 0 0 var(--logo-w);
     width: var(--logo-w);
-    height: 100%;
+    height: var(--header-h);
+    z-index: 1000;
     background: #ffffff;
     border: 2px solid var(--accent);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-md);
+    padding: 4px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 4px;
     overflow: hidden;
 }
 
-.external-logo {
+.fixed-logo-img {
     width: 100%;
     height: 100%;
     object-fit: contain;
     display: block;
 }
 
-/* Objet 2 : Le Header encadré et figé avec les textes centrés */
+/* ==========================================================================
+   2. HEADER ENCADRÉ FIGÉ CÔTE À CÔTE (Démarrant juste après le logo)
+   ========================================================================== */
 .site-header {
-    flex: 1 1 auto;
-    height: 100%;
+    position: fixed;
+    top: 8px;
+    left: calc(var(--side-margin) + var(--logo-w) + var(--top-gap));
+    right: var(--side-margin);
+    height: var(--header-h);
+    z-index: 1000;
+
     background: var(--glass-bg-strong);
     backdrop-filter: blur(22px) saturate(170%);
     -webkit-backdrop-filter: blur(22px) saturate(170%);
     border: 2px solid var(--accent);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-md);
+
     display: flex;
     align-items: center;
     justify-content: center;
@@ -179,7 +176,7 @@ html, body {
 }
 
 /* ==========================================================================
-   2. CONTENEUR PRINCIPAL (Marges 1cm gauche/droite, hauteur restante)
+   3. CONTENEUR PRINCIPAL (Marges 1cm gauche/droite, hauteur restante)
    ========================================================================== */
 .container {
     position: fixed;
@@ -200,7 +197,7 @@ html, body {
 }
 
 /* ==========================================================================
-   3. ONGLETS CÔTE À CÔTE SUR TOUT L'ESPACE + BARRE D'OUTILS
+   4. ONGLETS CÔTE À CÔTE SUR TOUT L'ESPACE + BARRE D'OUTILS
    ========================================================================== */
 .top-controls {
     flex: 0 0 auto;
@@ -270,7 +267,7 @@ html, body {
 }
 
 /* ==========================================================================
-   4. BOUTONS FLUENT WINDOWS 11
+   5. BOUTONS FLUENT WINDOWS 11
    ========================================================================== */
 .btn, button {
     font-family: inherit;
@@ -356,7 +353,7 @@ button:disabled {
 }
 
 /* ==========================================================================
-   5. PROGRESSION + TIMER
+   6. PROGRESSION + TIMER
    ========================================================================== */
 .status-strip {
     display: flex;
@@ -410,7 +407,7 @@ button:disabled {
 }
 
 /* ==========================================================================
-   6. STATS PANEL
+   7. STATS PANEL
    ========================================================================== */
 .stats-panel {
     flex: 0 0 auto;
@@ -457,7 +454,7 @@ button:disabled {
 }
 
 /* ==========================================================================
-   7. ZONE CENTRALE DU QUIZ
+   8. ZONE CENTRALE DU QUIZ
    ========================================================================== */
 .quiz-container {
     flex: 1 1 auto;
@@ -657,7 +654,7 @@ button:disabled {
 }
 
 /* ==========================================================================
-   8. FOOTER INSTITUTIONNEL FIXE ET ENCADRÉ
+   9. FOOTER INSTITUTIONNEL FIXE ET ENCADRÉ
    ========================================================================== */
 .footer {
     position: fixed;
@@ -687,7 +684,7 @@ button:disabled {
 }
 
 /* ==========================================================================
-   9. TOAST & ERROR BOX
+   10. TOAST & ERROR BOX
    ========================================================================== */
 .toast {
     position: fixed;
@@ -731,13 +728,13 @@ button:disabled {
 }
 
 /* ==========================================================================
-   10. RESPONSIVE (Tablettes & Mobiles)
+   11. RESPONSIVE (Tablettes & Mobiles)
    ========================================================================== */
 @media (max-width: 900px) {
     :root {
         --side-margin: 12px;
         --header-h: 82px;
-        --logo-w: 110px;
+        --logo-w: 82px;
     }
     .header-title { font-size: 1.18rem; }
     .header-subtitle { font-size: 0.76rem; }
@@ -748,9 +745,9 @@ button:disabled {
     :root {
         --side-margin: 8px;
         --header-h: 72px;
-        --logo-w: 76px;
+        --logo-w: 72px;
+        --top-gap: 6px;
     }
-    .top-banner-wrapper { gap: 8px; }
     .header-brand { display: none; }
     .header-title { font-size: 1.02rem; }
     .toolbar { flex-direction: column; align-items: stretch; }
