@@ -1,63 +1,63 @@
 /* ==========================================================================
-   K2-Cyberdrill Exam Platform — Style (Windows 7 Aero Green - Plein Écran)
-   Conception : Ananias KASANDA (IT-DevSecOps) | K-2 GLOBAL BUSINESS S.A.R.L.U.
+   K2-CYBERDRILL EXAM PLATFORM — PROFESSIONAL STYLESHEET
+   Enterprise Theme: Windows 7 Aero Emerald / Modern Enterprise Dashboard
+   Engineered for: K-2 GLOBAL BUSINESS S.A.R.L.U.
+   Architect: Ananias KASANDA (IT-DevSecOps)
    ========================================================================== */
 
 :root {
-    --win7-bg-start: #014d33;
-    --win7-bg-end: #0b6e4f;
-    --win7-glass: rgba(255, 255, 255, 0.10);
-    --win7-glass-strong: rgba(255, 255, 255, 0.22);
-    --win7-border: rgba(255, 255, 255, 0.35);
-    --win7-border-strong: rgba(255, 255, 255, 0.55);
-    --win7-titlebar-start: #0a6b4a;
-    --win7-titlebar-end: #028a5f;
+    /* Palette Aero Enterprise Green */
+    --win7-bg-start: #013b27;
+    --win7-bg-end: #074f38;
+    --win7-glass: rgba(255, 255, 255, 0.08);
+    --win7-glass-strong: rgba(255, 255, 255, 0.16);
+    --win7-border: rgba(255, 255, 255, 0.22);
+    --win7-border-strong: rgba(255, 255, 255, 0.40);
+    --win7-titlebar-start: #074f38;
+    --win7-titlebar-end: #013b27;
 
-    --green-50: #ecfdf5;
-    --green-100: #d1fae5;
-    --green-200: #a7f3d0;
-    --green-300: #6ee7b7;
-    --green-400: #34d399;
-    --green-500: #10b981;
-    --green-600: #059669;
-    --green-700: #047857;
-    --green-800: #065f46;
-    --green-900: #064e3b;
+    --emerald-50: #ecfdf5;
+    --emerald-100: #d1fae5;
+    --emerald-200: #a7f3d0;
+    --emerald-300: #6ee7b7;
+    --emerald-400: #34d399;
+    --emerald-500: #10b981;
+    --emerald-600: #059669;
+    --emerald-700: #047857;
+    --emerald-800: #065f46;
 
-    --text-primary: #f8fffb;
-    --text-secondary: #c8e6d7;
-    --text-muted: #88b6a0;
-    --text-dark: #062e1f;
+    --text-primary: #f1f8f5;
+    --text-secondary: #bce3d0;
+    --text-muted: #7ca994;
+    --text-dark: #022c1c;
 
-    --danger: #f87171;
-    --danger-bg: rgba(239, 68, 68, 0.12);
-    --success: #4ade80;
-    --success-bg: rgba(34, 197, 94, 0.14);
-    --warning: #fbbf24;
-    --warning-bg: rgba(251, 191, 36, 0.15);
+    --danger: #ef4444;
+    --danger-bg: rgba(239, 68, 68, 0.15);
+    --success: #22c55e;
+    --success-bg: rgba(34, 197, 94, 0.15);
+    --warning: #f59e0b;
+    --warning-bg: rgba(245, 158, 11, 0.15);
 
     --radius-sm: 6px;
     --radius-md: 10px;
     --radius-lg: 14px;
-    --radius-xl: 18px;
 
-    --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.25);
-    --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.35);
-    --shadow-lg: 0 14px 38px rgba(0, 0, 0, 0.45);
-    --shadow-glow: 0 0 0 1px rgba(110, 231, 183, 0.35), 0 6px 18px rgba(16, 185, 129, 0.25);
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
+    --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.3);
+    --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.4);
+    --shadow-glow: 0 0 0 1px rgba(110, 231, 183, 0.3), 0 4px 12px rgba(16, 185, 129, 0.2);
 
-    --font-sans: "Segoe UI", "Tahoma", "Geneva", "Verdana", system-ui, -apple-system, sans-serif;
-    --font-mono: "Consolas", "Cascadia Code", "Courier New", monospace;
+    --font-sans: "Segoe UI", system-ui, -apple-system, sans-serif;
+    --font-mono: "Cascadia Code", "Consolas", monospace;
 }
 
-/* Correction du sélecteur universel */
-*, *::before, *::after { 
-    box-sizing: border-box; 
+*, *::before, *::after {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-/* Verrouillage du scroll global pour forcer le design page unique (1 page) */
+/* Verrouillage du viewport pour une expérience application web native */
 html, body {
     width: 100%;
     height: 100vh;
@@ -65,44 +65,44 @@ html, body {
     overflow: hidden;
     font-family: var(--font-sans);
     color: var(--text-primary);
-    background: linear-gradient(135deg, var(--win7-bg-start) 0%, var(--win7-bg-end) 55%, #0a5a3e 100%);
+    background: linear-gradient(135deg, var(--win7-bg-start) 0%, var(--win7-bg-end) 100%);
     display: flex;
     flex-direction: column;
 }
 
-/* Aero decorative background */
+/* Arrière-plan décoratif subtil */
 .aero-bg {
     position: fixed;
     inset: 0;
     z-index: -1;
     pointer-events: none;
     background:
-        radial-gradient(circle at 18% 12%, rgba(255, 255, 255, 0.10) 0%, transparent 35%),
-        radial-gradient(circle at 82% 8%, rgba(167, 243, 208, 0.10) 0%, transparent 40%),
-        radial-gradient(circle at 50% 100%, rgba(52, 211, 153, 0.10) 0%, transparent 50%);
+        radial-gradient(circle at 15% 10%, rgba(255, 255, 255, 0.07) 0%, transparent 40%),
+        radial-gradient(circle at 85% 90%, rgba(167, 243, 208, 0.05) 0%, transparent 50%);
 }
 
-/* ---------------- Windows 7 title bar (FIGÉ EN HAUT) ---------------- */
+/* ---------------- 1. TITLEBAR (FIGÉ EN HAUT) ---------------- */
 .win7-titlebar {
     flex: 0 0 auto;
+    height: 34px;
     z-index: 100;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 6px 14px;
-    background: linear-gradient(to bottom, var(--win7-titlebar-start) 0%, var(--win7-titlebar-end) 100%);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.35);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 2px 6px rgba(0, 0, 0, 0.3);
+    padding: 0 14px;
+    background: linear-gradient(to bottom, #0a6b4a 0%, #04422d 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .win7-title-text {
     color: #fff;
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-weight: 600;
-    letter-spacing: 0.04em;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+    letter-spacing: 0.03em;
     flex: 1;
     text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .win7-window-controls {
@@ -112,144 +112,145 @@ html, body {
 }
 
 .win7-window-controls .wc {
-    width: 12px;
-    height: 12px;
+    width: 11px;
+    height: 11px;
     border-radius: 50%;
     display: inline-block;
-    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4);
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5);
 }
 
 .wc-min { background: #fbbf24; }
 .wc-max { background: #34d399; }
 .wc-close { background: #f87171; }
 
-/* ---------------- Main container (CENTRAL FLEX) ---------------- */
+/* ---------------- 2. CONTENEUR PRINCIPAL (DASHBOARD) ---------------- */
 .container {
     flex: 1 1 auto;
     min-height: 0;
-    max-width: 1080px;
+    max-width: 1200px;
     width: 100%;
     margin: 0 auto;
-    padding: 10px 16px;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    padding: 14px 20px;
+    background: var(--win7-glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-left: 1px solid var(--win7-border);
     border-right: 1px solid var(--win7-border);
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
     overflow: hidden;
 }
 
-/* ---------------- Branding ---------------- */
+/* ---------------- 3. BRANDING BLOCK ---------------- */
 .branding {
     flex: 0 0 auto;
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 10px 14px;
+    gap: 16px;
+    padding: 10px 16px;
     border-radius: var(--radius-md);
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.04));
+    background: rgba(0, 0, 0, 0.22);
     border: 1px solid var(--win7-border);
     box-shadow: var(--shadow-sm);
 }
 
 .brand-logo {
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
     border-radius: 8px;
     object-fit: cover;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(255, 255, 255, 0.25);
-    flex-shrink: 0;
+    border: 1px solid rgba(255, 255, 255, 0.3);
     background: #fff;
+    flex-shrink: 0;
 }
 
 .brand-text h2 {
     margin: 0 0 2px;
-    color: #ecfdf5;
-    font-size: 0.95rem;
+    color: #fff;
+    font-size: 0.98rem;
+    font-weight: 700;
     letter-spacing: 0.02em;
 }
 
 .brand-text p {
     margin: 0;
     color: var(--text-secondary);
-    font-size: 0.76rem;
+    font-size: 0.78rem;
 }
 
 .brand-text .role {
-    color: var(--green-300);
+    color: var(--emerald-300);
     font-weight: 600;
 }
 
 h1 {
     flex: 0 0 auto;
-    margin: 2px 0;
-    color: #f0fff7;
-    font-size: 1.15rem;
-    text-align: center;
+    margin: 0;
+    color: #ffffff;
+    font-size: 1.25rem;
     font-weight: 600;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 }
 
 .subtitle {
     flex: 0 0 auto;
-    margin: 0 0 6px;
+    margin: 0;
     text-align: center;
     color: var(--text-secondary);
-    font-size: 0.78rem;
+    font-size: 0.82rem;
 }
 
-/* ---------------- Progress bar ---------------- */
+/* ---------------- 4. PROGRESS BAR ---------------- */
 .exam-progress {
     flex: 0 0 auto;
-    height: 5px;
-    background: rgba(0, 0, 0, 0.25);
+    height: 6px;
+    background: rgba(0, 0, 0, 0.3);
     border-radius: 999px;
     overflow: hidden;
-    margin: 0 0 6px;
     border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .exam-progress-bar {
     height: 100%;
     width: 0%;
-    background: linear-gradient(90deg, var(--green-400), var(--green-300));
+    background: linear-gradient(90deg, var(--emerald-400), var(--emerald-200));
     border-radius: 999px;
-    transition: width 0.35s ease;
+    transition: width 0.3s ease;
     box-shadow: 0 0 8px rgba(110, 231, 183, 0.5);
 }
 
-/* ---------------- Toolbar & Onglets alignés côte à côte ---------------- */
+/* ---------------- 5. TOOLBAR & ONGLETS CÔTE À CÔTE ---------------- */
 .toolbar {
     flex: 0 0 auto;
     display: flex;
     flex-direction: column;
     gap: 8px;
-    margin: 4px 0;
+}
+
+.exam-list {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    overflow-x: auto;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+    padding-bottom: 4px;
+}
+
+.exam-list::-webkit-scrollbar {
+    height: 4px;
+}
+.exam-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
 }
 
 .toolbar-actions {
     display: flex;
-    flex-wrap: nowrap;
-    gap: 6px;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-/* Onglets alignés horizontalement côte à côte sans retour à la ligne */
-.exam-list {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    overflow-x: auto;
-    scrollbar-width: none;
-    padding-bottom: 2px;
-}
-
-.exam-list::-webkit-scrollbar {
-    display: none;
+    gap: 8px;
+    justify-content: flex-end;
 }
 
 .theme-list {
@@ -259,168 +260,164 @@ h1 {
     gap: 6px;
     overflow-x: auto;
     scrollbar-width: none;
-    margin-bottom: 6px;
-    padding: 8px 10px;
-    background: rgba(0, 0, 0, 0.18);
+    padding: 8px 12px;
+    background: rgba(0, 0, 0, 0.2);
     border-radius: var(--radius-sm);
-    border: 1px solid rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .theme-list::-webkit-scrollbar {
     display: none;
 }
 
-/* ---------------- Buttons ---------------- */
-.btn,
-button {
+/* ---------------- 6. BUTTONS & TABS ---------------- */
+.btn, button {
     font-family: inherit;
-    font-size: 0.8rem;
+    font-size: 0.82rem;
     font-weight: 600;
     border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: var(--radius-sm);
-    padding: 6px 12px;
+    padding: 8px 14px;
     cursor: pointer;
     color: #fff;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.04));
-    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease, border-color 0.2s ease;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.03));
+    transition: all 0.15s ease;
     box-shadow: var(--shadow-sm);
-    user-select: none;
-    -webkit-tap-highlight-color: transparent;
     white-space: nowrap;
 }
 
-.btn:hover,
-button:hover {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.10));
-    transform: translateY(-1px);
+.btn:hover, button:hover {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.08));
     border-color: var(--win7-border-strong);
 }
 
-.exam-btn,
-.theme-btn {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.10), rgba(0, 0, 0, 0.18));
+.exam-btn, .theme-btn {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.2));
     color: var(--text-secondary);
-    border: 1px solid rgba(255, 255, 255, 0.18);
-    padding: 6px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 7px 14px;
     font-size: 0.78rem;
     flex: 0 0 auto;
 }
 
-.exam-btn:hover,
-.theme-btn:hover {
+.exam-btn:hover, .theme-btn:hover {
     color: #fff;
-    border-color: var(--green-300);
+    border-color: var(--emerald-300);
 }
 
-.exam-btn.active,
-.theme-btn.active {
-    background: linear-gradient(180deg, var(--green-400) 0%, var(--green-600) 100%);
+.exam-btn.active, .theme-btn.active {
+    background: linear-gradient(180deg, var(--emerald-400) 0%, var(--emerald-600) 100%);
     color: var(--text-dark);
-    border-color: var(--green-300);
+    border-color: var(--emerald-300);
     box-shadow: var(--shadow-glow);
     font-weight: 700;
 }
 
-.btn-ghost,
-.file-import-label {
+.btn-ghost, .file-import-label {
     background: transparent;
     border: 1px dashed rgba(255, 255, 255, 0.35);
     color: var(--text-secondary);
-    padding: 6px 10px;
-    font-size: 0.76rem;
 }
 
-.btn-ghost:hover,
-.file-import-label:hover {
+.btn-ghost:hover, .file-import-label:hover {
     color: #fff;
-    border-color: var(--green-300);
-    background: rgba(16, 185, 129, 0.10);
+    border-color: var(--emerald-300);
+    background: rgba(16, 185, 129, 0.15);
 }
 
 .btn.primary {
-    background: linear-gradient(180deg, var(--green-400) 0%, var(--green-700) 100%);
-    color: #042114;
-    border-color: var(--green-300);
+    background: linear-gradient(180deg, var(--emerald-400) 0%, var(--emerald-700) 100%);
+    color: var(--text-dark);
+    border-color: var(--emerald-300);
 }
 
 .file-import-label {
     display: inline-flex;
     align-items: center;
     cursor: pointer;
+    padding: 6px 12px;
+    font-size: 0.78rem;
+    border-radius: var(--radius-sm);
 }
 
-/* ---------------- Stats panel ---------------- */
+/* ---------------- 7. TIMER & STATS ---------------- */
+.timer-display {
+    flex: 0 0 auto;
+    text-align: center;
+    margin: 0 auto;
+    padding: 6px 16px;
+    border-radius: var(--radius-sm);
+    font-weight: 700;
+    font-size: 0.92rem;
+    background: rgba(0, 0, 0, 0.35);
+    color: var(--emerald-200);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-variant-numeric: tabular-nums;
+}
+
 .stats-panel {
     flex: 0 0 auto;
-    margin: 0 0 6px;
-    padding: 10px 14px;
+    padding: 12px 16px;
     border-radius: var(--radius-md);
-    background: rgba(0, 0, 0, 0.22);
-    border: 1px solid rgba(255, 255, 255, 0.10);
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .stats-panel h3 {
     margin: 0 0 8px;
-    color: var(--green-200);
-    font-size: 0.85rem;
+    color: var(--emerald-200);
+    font-size: 0.88rem;
 }
 
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
     gap: 8px;
 }
 
 .stat-card {
-    padding: 6px 10px;
+    padding: 8px 10px;
     border-radius: var(--radius-sm);
-    background: rgba(255, 255, 255, 0.06);
-    border: 1px solid rgba(255, 255, 255, 0.10);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .stat-card .stat-value {
     display: block;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     font-weight: 700;
-    color: var(--green-200);
+    color: var(--emerald-200);
 }
 
 .stat-card .stat-label {
-    font-size: 0.68rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
     color: var(--text-muted);
 }
 
-/* ---------------- Timer ---------------- */
-.timer-display {
-    flex: 0 0 auto;
-    text-align: center;
-    margin: 0 auto 6px;
-    padding: 6px 14px;
-    border-radius: var(--radius-sm);
-    font-weight: 700;
-    font-size: 0.95rem;
-    background: rgba(0, 0, 0, 0.30);
-    color: var(--green-200);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    font-variant-numeric: tabular-nums;
-}
-
-/* ---------------- Quiz container (Scrollable interne si besoin) ---------------- */
+/* ---------------- 8. QUIZ CONTAINER (SCROLLABLE INTERNE) ---------------- */
 .quiz-container {
     flex: 1 1 auto;
     min-height: 0;
     overflow-y: auto;
     display: flex;
     flex-direction: column;
+    padding-right: 4px;
 }
 
-.question-card,
-.results-card {
+.quiz-container::-webkit-scrollbar {
+    width: 6px;
+}
+.quiz-container::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+.question-card, .results-card {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03));
     border: 1px solid var(--win7-border);
     border-radius: var(--radius-md);
-    padding: 14px 18px;
+    padding: 18px 22px;
     box-shadow: var(--shadow-md);
 }
 
@@ -428,105 +425,106 @@ button:hover {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 8px;
-    color: var(--green-200);
-    font-size: 0.72rem;
+    gap: 10px;
+    color: var(--emerald-200);
+    font-size: 0.75rem;
     text-transform: uppercase;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
 }
 
 .theme-badge {
-    background: rgba(16, 185, 129, 0.18);
-    color: var(--green-100);
-    border: 1px solid rgba(16, 185, 129, 0.45);
+    background: rgba(16, 185, 129, 0.2);
+    color: var(--emerald-100);
+    border: 1px solid rgba(16, 185, 129, 0.5);
     border-radius: 999px;
-    padding: 2px 10px;
-    font-size: 0.74rem;
+    padding: 3px 10px;
+    font-size: 0.75rem;
     font-weight: 600;
     text-transform: none;
 }
 
-.question-card h3,
-.results-card h2 {
-    margin: 4px 0 10px;
-    color: #f0fff7;
-    font-size: 0.98rem;
-    line-height: 1.35;
+.question-card h3, .results-card h2 {
+    margin: 6px 0 14px;
+    color: #ffffff;
+    font-size: 1.05rem;
+    line-height: 1.45;
 }
 
-/* Options en grille 2 colonnes pour économiser l'espace vertical */
+/* Options en grille 2 colonnes pour un affichage pro type dashboard */
 .answers {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    gap: 8px;
-    margin-top: 8px;
+    gap: 10px;
+    margin-top: 12px;
 }
 
 .option-item {
     display: flex;
     align-items: flex-start;
-    gap: 10px;
-    background: rgba(0, 0, 0, 0.20);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    gap: 12px;
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: var(--radius-sm);
-    padding: 8px 10px;
+    padding: 12px 14px;
     cursor: pointer;
-    transition: border-color 0.15s, background 0.15s;
+    transition: all 0.15s ease;
 }
 
 .option-item:hover {
-    border-color: var(--green-300);
-    background: rgba(16, 185, 129, 0.10);
+    border-color: var(--emerald-300);
+    background: rgba(16, 185, 129, 0.12);
 }
 
 .option-item input[type="radio"] {
-    margin-top: 2px;
-    accent-color: var(--green-400);
+    margin-top: 3px;
+    accent-color: var(--emerald-400);
     width: 16px;
     height: 16px;
     flex-shrink: 0;
 }
 
 .option-item.selected {
-    border-color: var(--green-300);
-    background: rgba(16, 185, 129, 0.16);
+    border-color: var(--emerald-300);
+    background: rgba(16, 185, 129, 0.2);
 }
 
 .option-item span {
     color: var(--text-primary);
-    font-size: 0.84rem;
+    font-size: 0.9rem;
+    line-height: 1.35;
 }
 
-/* Feedback */
+/* Feedback professionnel */
 .feedback {
-    margin-top: 10px;
+    margin-top: 14px;
     border-radius: var(--radius-sm);
-    padding: 10px 12px;
+    padding: 12px 16px;
     border: 1px solid transparent;
-    font-size: 0.84rem;
+    font-size: 0.88rem;
 }
 
 .feedback strong {
     display: block;
-    font-size: 0.95rem;
-    margin-bottom: 4px;
+    font-size: 0.98rem;
+    margin-bottom: 6px;
 }
 
 .feedback p {
     margin: 4px 0;
     color: var(--text-secondary);
+    line-height: 1.5;
 }
 
 .feedback.correct {
     background: var(--success-bg);
-    border-color: rgba(74, 222, 128, 0.55);
+    border-color: rgba(34, 197, 94, 0.5);
     color: #ecfdf5;
 }
 .feedback.correct strong { color: var(--success); }
 
 .feedback.incorrect {
     background: var(--danger-bg);
-    border-color: rgba(248, 113, 113, 0.55);
+    border-color: rgba(239, 68, 68, 0.5);
     color: #fff5f5;
 }
 .feedback.incorrect strong { color: var(--danger); }
@@ -535,53 +533,55 @@ button:hover {
 .navigation {
     display: flex;
     justify-content: space-between;
-    gap: 8px;
-    margin-top: 12px;
+    gap: 12px;
+    margin-top: 16px;
 }
 
 .navigation button {
     flex: 1;
-    padding: 8px 12px;
+    padding: 10px 16px;
 }
 
 /* Results */
 .review-item {
-    margin: 8px 0;
-    padding: 8px 10px;
+    margin: 10px 0;
+    padding: 12px 14px;
     border-radius: var(--radius-sm);
-    background: rgba(0, 0, 0, 0.18);
-    font-size: 0.84rem;
+    background: rgba(0, 0, 0, 0.2);
+    font-size: 0.88rem;
 }
 
 .score-banner {
     text-align: center;
-    margin: 8px 0;
-    padding: 12px;
+    margin: 12px 0;
+    padding: 16px;
     border-radius: var(--radius-md);
-    background: linear-gradient(135deg, rgba(16, 185, 129, 0.20), rgba(0, 0, 0, 0.20));
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.25), rgba(0, 0, 0, 0.25));
+    border: 1px solid rgba(16, 185, 129, 0.4);
 }
 
 .score-banner .big {
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: 800;
-    color: var(--green-300);
+    color: var(--emerald-300);
 }
 
-/* ---------------- Toast ---------------- */
+/* ---------------- 9. TOAST & FOOTER (FIGÉ EN BAS) ---------------- */
 .toast {
     position: fixed;
     left: 50%;
     bottom: 45px;
     transform: translateX(-50%) translateY(20px);
-    background: rgba(0, 0, 0, 0.9);
+    background: rgba(0, 0, 0, 0.92);
     color: #fff;
-    padding: 8px 16px;
+    padding: 10px 18px;
     border-radius: var(--radius-sm);
-    border: 1px solid var(--green-400);
+    border: 1px solid var(--emerald-400);
     z-index: 1000;
     opacity: 0;
     transition: opacity 0.2s ease, transform 0.2s ease;
-    font-size: 0.8rem;
+    font-size: 0.82rem;
+    box-shadow: var(--shadow-lg);
 }
 
 .toast.show {
@@ -589,23 +589,28 @@ button:hover {
     transform: translateX(-50%) translateY(0);
 }
 
-/* ---------------- Footer (FIGÉ EN BAS) ---------------- */
 .footer {
     flex: 0 0 auto;
     text-align: center;
     color: var(--text-muted);
-    font-size: 0.72rem;
-    padding: 6px 10px;
-    border-top: 1px solid rgba(255, 255, 255, 0.10);
-    background: rgba(0, 0, 0, 0.15);
+    font-size: 0.75rem;
+    padding: 8px 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
     z-index: 100;
 }
 
-/* ---------------- Responsive & Adaptations mobiles ---------------- */
-@media (max-width: 768px) {
+/* ---------------- RESPONSIVE OPTIMIZATION ---------------- */
+@media (max-width: 900px) {
     .answers {
-        grid-template-columns: 1fr; /* 1 colonne sur petit écran pour plus de lisibilité */
+        grid-template-columns: 1fr; /* Bascule sur 1 colonne pour tablettes et mobiles */
     }
-    .branding { padding: 8px 10px; }
+}
+
+@media (max-width: 600px) {
+    .container { padding: 8px 10px; }
+    .branding { padding: 8px 10px; gap: 10px; }
     .brand-logo { width: 38px; height: 38px; }
+    .brand-text h2 { font-size: 0.88rem; }
+    h1 { font-size: 1.05rem; }
 }
