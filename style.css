@@ -1,66 +1,55 @@
 /* ==========================================================================
    K2-Cyberdrill Exam Platform — Style
-   Thème : Windows 11 Fluent Design (clair, accent bleu signature)
-   Palette : Mica light + accent #0078D4 (pas de vert)
-   Responsive : mobile-first, affichage plein écran, onglets parallèles compacts
+   Theme: Windows 7 Aero Green (emerald)
+   Responsive: mobile-first, optimized for touch scrolling
    ========================================================================== */
 
 :root {
-    /* --- Accent Windows 11 (bleu signature) --- */
-    --w11-accent:        #0078D4;
-    --w11-accent-hover:  #0067C0;
-    --w11-accent-pressed:#005FB8;
-    --w11-accent-light:  #C7E0F4;
-    --w11-accent-lighter:#EFF6FC;
-    --w11-accent-border: #4DA0E5;
+    /* Aero green palette (Win7 style) */
+    --win7-bg-start: #014d33;
+    --win7-bg-end: #0b6e4f;
+    --win7-glass: rgba(255, 255, 255, 0.10);
+    --win7-glass-strong: rgba(255, 255, 255, 0.22);
+    --win7-border: rgba(255, 255, 255, 0.35);
+    --win7-border-strong: rgba(255, 255, 255, 0.55);
+    --win7-titlebar-start: #0a6b4a;
+    --win7-titlebar-end: #028a5f;
 
-    /* --- Surfaces Mica (fond clair Windows 11) --- */
-    --w11-bg:            #F3F3F3;
-    --w11-bg-soft:       #FAFAFA;
-    --w11-surface:       #FFFFFF;
-    --w11-surface-hover: #F6F9FC;
-    --w11-surface-alt:   #F5F7FA;
+    --green-50: #ecfdf5;
+    --green-100: #d1fae5;
+    --green-200: #a7f3d0;
+    --green-300: #6ee7b7;
+    --green-400: #34d399;
+    --green-500: #10b981;
+    --green-600: #059669;
+    --green-700: #047857;
+    --green-800: #065f46;
+    --green-900: #064e3b;
 
-    /* --- Bordures --- */
-    --w11-border:        #E5E5E5;
-    --w11-border-soft:   #EFEFEF;
-    --w11-border-strong: #D1D1D1;
-    --w11-divider:       #EDEDED;
+    --text-primary: #f8fffb;
+    --text-secondary: #c8e6d7;
+    --text-muted: #88b6a0;
+    --text-dark: #062e1f;
 
-    /* --- Texte --- */
-    --text-primary:   #1A1A1A;
-    --text-secondary: #5B5B5B;
-    --text-muted:     #8A8A8A;
-    --text-on-accent: #FFFFFF;
+    --danger: #f87171;
+    --danger-bg: rgba(239, 68, 68, 0.12);
+    --success: #4ade80;
+    --success-bg: rgba(34, 197, 94, 0.14);
+    --warning: #fbbf24;
+    --warning-bg: rgba(251, 191, 36, 0.15);
 
-    /* --- Statuts (palette Windows 11) --- */
-    --success:    #0F7B0F;
-    --success-bg: #E8F5E9;
-    --danger:     #C42B1C;
-    --danger-bg:  #FDECEA;
-    --warning:    #B47B00;
-    --warning-bg: #FFF4E0;
-
-    /* --- Rayons (Fluent : 4 / 6 / 8) --- */
-    --radius-xs: 4px;
     --radius-sm: 6px;
-    --radius-md: 8px;
-    --radius-lg: 12px;
-    --radius-pill: 999px;
+    --radius-md: 10px;
+    --radius-lg: 14px;
+    --radius-xl: 18px;
 
-    /* --- Ombres douces (Fluent) --- */
-    --shadow-sm: 0 1px 2px rgba(0,0,0,0.06), 0 1px 3px rgba(0,0,0,0.04);
-    --shadow-md: 0 2px 8px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.05);
-    --shadow-lg: 0 8px 24px rgba(0,0,0,0.12), 0 2px 6px rgba(0,0,0,0.06);
-    --shadow-accent: 0 0 0 1px var(--w11-accent-border), 0 4px 14px rgba(0,120,212,0.22);
+    --shadow-sm: 0 2px 6px rgba(0, 0, 0, 0.25);
+    --shadow-md: 0 8px 20px rgba(0, 0, 0, 0.35);
+    --shadow-lg: 0 14px 38px rgba(0, 0, 0, 0.45);
+    --shadow-glow: 0 0 0 1px rgba(110, 231, 183, 0.35), 0 6px 18px rgba(16, 185, 129, 0.25);
 
-    /* --- Métriques du header --- */
-    --header-h: 56px;
-    --header-logo: 38px;            /* proportionnel au header (~68%) */
-
-    --font-sans: "Segoe UI Variable", "Segoe UI", "Tahoma", "Geneva", "Verdana",
-                 system-ui, -apple-system, "Helvetica Neue", sans-serif;
-    --font-mono: "Cascadia Code", "Consolas", "Courier New", monospace;
+    --font-sans: "Segoe UI", "Tahoma", "Geneva", "Verdana", system-ui, -apple-system, "Helvetica Neue", sans-serif;
+    --font-mono: "Consolas", "Cascadia Code", "Courier New", monospace;
 }
 
 * { box-sizing: border-box; }
@@ -79,348 +68,291 @@ html {
 body {
     font-family: var(--font-sans);
     color: var(--text-primary);
-    /* Fond Mica clair : dégradé subtil bleuté */
-    background:
-        radial-gradient(1200px 600px at 100% -10%, var(--w11-accent-lighter) 0%, transparent 55%),
-        radial-gradient(900px 500px at -10% 110%, var(--w11-accent-lighter) 0%, transparent 50%),
-        var(--w11-bg);
+    background: linear-gradient(135deg, var(--win7-bg-start) 0%, var(--win7-bg-end) 55%, #0a5a3e 100%);
     background-attachment: fixed;
     line-height: 1.55;
     min-height: 100vh;
     overflow-x: hidden;
-    padding: env(safe-area-inset-top) env(safe-area-inset-right)
-             env(safe-area-inset-bottom) env(safe-area-inset-left);
-    -webkit-font-smoothing: antialiased;
-    text-rendering: optimizeLegibility;
+    /* iOS safe area */
+    padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
-/* ==========================================================================
-   HEADER — barre de titre Windows 11
-   ========================================================================== */
-.app-header {
+/* Aero decorative background (light beams) */
+.aero-bg {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 18% 12%, rgba(255, 255, 255, 0.10) 0%, transparent 35%),
+        radial-gradient(circle at 82% 8%, rgba(167, 243, 208, 0.10) 0%, transparent 40%),
+        radial-gradient(circle at 50% 100%, rgba(52, 211, 153, 0.10) 0%, transparent 50%);
+}
+
+/* ---------------- Windows 7 title bar ---------------- */
+.win7-titlebar {
     position: sticky;
     top: 0;
     z-index: 100;
-    height: var(--header-h);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 16px;
-    padding: 0 6px 0 14px;
-    background: rgba(255, 255, 255, 0.78);
-    backdrop-filter: blur(28px) saturate(160%);
-    -webkit-backdrop-filter: blur(28px) saturate(160%);
-    border-bottom: 1px solid var(--w11-border);
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
+    padding: 8px 14px;
+    background: linear-gradient(to bottom, var(--win7-titlebar-start) 0%, var(--win7-titlebar-end) 100%);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 2px 6px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
 }
 
-.header-brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    min-width: 0;
-}
-
-/* Logo à gauche, proportionnel à la hauteur du header */
-.header-logo {
-    height: var(--header-logo);
-    width: var(--header-logo);
-    flex-shrink: 0;
-    display: block;
-    border-radius: var(--radius-sm);
-    box-shadow: var(--shadow-sm);
-}
-
-.header-titles {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-width: 0;
-    line-height: 1.2;
-}
-
-.header-app-name {
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    letter-spacing: 0.01em;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.header-org {
-    font-size: 0.72rem;
-    color: var(--text-secondary);
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-/* Contrôles de fenêtre Windows 11 (droite) */
-.header-controls {
-    display: flex;
-    align-items: stretch;
-    height: 100%;
-}
-
-.header-controls .wc {
-    width: 46px;
-    height: 100%;
-    border: none;
-    background: transparent;
-    color: var(--text-primary);
-    cursor: default;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    min-height: 0;
-    box-shadow: none;
-    border-radius: 0;
-    transition: background 0.12s ease;
-}
-
-.header-controls .wc svg {
-    width: 11px;
-    height: 11px;
-}
-
-.header-controls .wc:hover {
-    background: var(--w11-border-soft);
-    transform: none;
-    box-shadow: none;
-}
-
-.header-controls .wc-close:hover {
-    background: #C42B1C;
+.win7-title-text {
     color: #fff;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+    flex: 1;
+    text-align: center;
 }
 
-.header-controls .wc:active {
-    background: var(--w11-border);
-    transform: none;
-    box-shadow: none;
+.win7-window-controls {
+    display: flex;
+    gap: 6px;
+    align-items: center;
 }
 
-/* ==========================================================================
-   CONTENU PRINCIPAL — presque tout l'écran
-   ========================================================================== */
-.app-main {
-    width: 100%;
-    max-width: 1600px;            /* presque plein écran sur grand moniteur */
+.win7-window-controls .wc {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+.wc-min { background: #fbbf24; }
+.wc-max { background: #34d399; }
+.wc-close { background: #f87171; }
+
+/* ---------------- Main container ---------------- */
+.container {
+    max-width: 980px;
     margin: 0 auto;
-    padding: 22px 28px 36px;
-    min-height: calc(100vh - var(--header-h));
+    padding: 18px 16px 32px;
+    /* Win7 Aero glass */
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-left: 1px solid var(--win7-border);
+    border-right: 1px solid var(--win7-border);
+    min-height: calc(100vh - 40px);
+}
+
+/* ---------------- Branding ---------------- */
+.branding {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0.04));
+    border: 1px solid var(--win7-border);
+    box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+.brand-logo {
+    width: 72px;
+    height: 72px;
+    border-radius: 12px;
+    object-fit: cover;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3), 0 0 0 2px rgba(255, 255, 255, 0.25);
+    flex-shrink: 0;
+    background: #fff;
+}
+
+.brand-text h2 {
+    margin: 0 0 4px;
+    color: #ecfdf5;
+    font-size: 1.15rem;
+    letter-spacing: 0.02em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+}
+
+.brand-text p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.brand-text .role {
+    color: var(--green-300);
+    font-weight: 600;
+}
+
+h1 {
+    margin: 20px 0 6px;
+    color: #f0fff7;
+    font-size: 1.45rem;
+    text-align: center;
+    font-weight: 600;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.subtitle {
+    margin: 0 0 16px;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.88rem;
+}
+
+/* ---------------- Progress bar ---------------- */
+.exam-progress {
+    height: 6px;
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 999px;
+    overflow: hidden;
+    margin: 0 0 18px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.exam-progress-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--green-400), var(--green-300));
+    border-radius: 999px;
+    transition: width 0.35s ease;
+    box-shadow: 0 0 8px rgba(110, 231, 183, 0.5);
+}
+
+/* ---------------- Toolbar ---------------- */
+.toolbar {
     display: flex;
     flex-direction: column;
+    gap: 14px;
+    margin: 14px 0;
 }
-
-/* ==========================================================================
-   HERO — grand titre + UN seul sous-titre
-   ========================================================================== */
-.hero {
-    margin: 4px 0 18px;
-    padding: 6px 4px 0;
-}
-
-.hero h1 {
-    margin: 0 0 6px;
-    font-size: clamp(1.55rem, 2.4vw, 2rem);
-    font-weight: 700;
-    line-height: 1.25;
-    letter-spacing: -0.01em;
-    color: var(--text-primary);
-}
-
-.hero .subtitle {
-    margin: 0;
-    font-size: clamp(0.9rem, 1.1vw, 1rem);
-    color: var(--text-secondary);
-    font-weight: 400;
-}
-
-/* ==========================================================================
-   BARRE D'ONGLETS — tous alignés en parallèle, compact
-   ========================================================================== */
-.tabs-bar {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin: 0 0 14px;
-    padding: 8px;
-    background: var(--w11-surface);
-    border: 1px solid var(--w11-border);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-sm);
-}
-
-.exam-list {
-    flex: 1 1 auto;
-    min-width: 0;
-    display: flex;
-    flex-wrap: nowrap;            /* parallèle : une seule ligne */
-    align-items: center;
-    gap: 4px;
-    overflow-x: auto;
-    overflow-y: hidden;
-    scrollbar-width: thin;
-    scrollbar-color: var(--w11-border-strong) transparent;
-    padding: 2px 2px 4px;
-}
-
-.exam-list::-webkit-scrollbar { height: 6px; }
-.exam-list::-webkit-scrollbar-thumb {
-    background: var(--w11-border-strong);
-    border-radius: var(--radius-pill);
-}
-.exam-list::-webkit-scrollbar-track { background: transparent; }
 
 .toolbar-actions {
-    flex: 0 0 auto;
     display: flex;
-    align-items: center;
+    flex-wrap: wrap;
     gap: 8px;
-    padding-left: 8px;
-    border-left: 1px solid var(--w11-divider);
+    justify-content: center;
 }
 
-/* ==========================================================================
-   FILTRES PAR THÈME — onglets parallèles secondaires
-   ========================================================================== */
+.exam-list,
 .theme-list {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    gap: 6px;
-    margin: 0 0 14px;
-    padding: 8px 10px;
-    background: var(--w11-surface-alt);
-    border: 1px solid var(--w11-border-soft);
-    border-radius: var(--radius-md);
+    gap: 8px;
+    justify-content: center;
 }
 
-/* ==========================================================================
-   BOUTONS — Fluent style
-   ========================================================================== */
+.theme-list {
+    margin-bottom: 14px;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.18);
+    border-radius: var(--radius-md);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+/* ---------------- Buttons ---------------- */
 .btn,
 button {
     font-family: inherit;
-    font-size: 0.86rem;
+    font-size: 0.88rem;
     font-weight: 600;
-    border: 1px solid var(--w11-border-strong);
+    border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: var(--radius-sm);
-    padding: 8px 14px;
+    padding: 10px 16px;
     cursor: pointer;
-    color: var(--text-primary);
-    background: var(--w11-surface);
-    transition: background 0.14s ease, border-color 0.14s ease,
-                box-shadow 0.14s ease, transform 0.08s ease, color 0.14s ease;
-    box-shadow: none;
+    color: #fff;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.04));
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease, border-color 0.2s ease;
+    box-shadow: var(--shadow-sm);
     user-select: none;
     -webkit-tap-highlight-color: transparent;
-    min-height: 36px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    line-height: 1;
+    min-height: 40px; /* touch target */
 }
 
 .btn:hover,
 button:hover {
-    background: var(--w11-surface-hover);
-    border-color: var(--w11-accent-border);
-    transform: none;
-    box-shadow: none;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.28), rgba(255, 255, 255, 0.10));
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-md);
+    border-color: var(--win7-border-strong);
 }
 
 .btn:active,
 button:active {
-    background: var(--w11-border-soft);
-    border-color: var(--w11-accent);
-    transform: scale(0.985);
-    box-shadow: none;
+    transform: translateY(0);
+    box-shadow: var(--shadow-sm);
 }
 
 .btn:focus-visible,
 button:focus-visible,
 input:focus-visible,
 label:focus-visible {
-    outline: 2px solid var(--w11-accent);
-    outline-offset: 1px;
+    outline: 2px solid var(--green-300);
+    outline-offset: 2px;
 }
 
 button:disabled {
-    opacity: 0.4;
+    opacity: 0.45;
     cursor: not-allowed;
     transform: none;
+    box-shadow: none;
 }
 
-.btn-icon {
-    width: 14px;
-    height: 14px;
-    flex-shrink: 0;
-}
-
-/* Onglets examens / thèmes — pilules parallèles */
 .exam-btn,
 .theme-btn {
-    flex: 0 0 auto;
-    background: transparent;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.10), rgba(0, 0, 0, 0.18));
     color: var(--text-secondary);
-    border: 1px solid transparent;
-    border-radius: var(--radius-sm);
-    padding: 7px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    padding: 8px 14px;
     font-size: 0.82rem;
-    font-weight: 600;
-    min-height: 32px;
-    white-space: nowrap;
 }
 
 .exam-btn:hover,
 .theme-btn:hover {
-    background: var(--w11-accent-lighter);
-    color: var(--w11-accent-hover);
-    border-color: transparent;
+    color: #fff;
+    border-color: var(--green-300);
 }
 
-.exam-btn:active,
-.theme-btn:active {
-    background: var(--w11-accent-light);
-    transform: scale(0.97);
-}
-
-/* Onglet actif : accent bleu Windows 11 */
 .exam-btn.active,
 .theme-btn.active {
-    background: var(--w11-accent);
-    color: var(--text-on-accent);
-    border-color: var(--w11-accent-pressed);
-    box-shadow: var(--shadow-accent);
+    background: linear-gradient(180deg, var(--green-400) 0%, var(--green-600) 100%);
+    color: var(--text-dark);
+    border-color: var(--green-300);
+    box-shadow: var(--shadow-glow);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
-.exam-btn.active:hover,
-.theme-btn.active:hover {
-    background: var(--w11-accent-hover);
-    color: var(--text-on-accent);
-}
-
-/* Boutons fantômes (import / stats) */
 .btn-ghost,
 .file-import-label {
     background: transparent;
-    border: 1px solid var(--w11-border);
+    border: 1px dashed rgba(255, 255, 255, 0.35);
     color: var(--text-secondary);
-    padding: 7px 12px;
-    min-height: 32px;
 }
 
 .btn-ghost:hover,
 .file-import-label:hover {
-    color: var(--w11-accent-hover);
-    border-color: var(--w11-accent-border);
-    background: var(--w11-accent-lighter);
+    color: #fff;
+    border-color: var(--green-300);
+    background: rgba(16, 185, 129, 0.10);
+}
+
+.btn.primary {
+    background: linear-gradient(180deg, var(--green-400) 0%, var(--green-700) 100%);
+    color: #042114;
+    border-color: var(--green-300);
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.btn.primary:hover {
+    background: linear-gradient(180deg, var(--green-300) 0%, var(--green-600) 100%);
+    box-shadow: var(--shadow-glow);
+}
+
+.btn.secondary {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(0, 0, 0, 0.20));
 }
 
 .file-import-label {
@@ -429,140 +361,92 @@ button:disabled {
     cursor: pointer;
 }
 
-/* Bouton primaire */
-.btn.primary {
-    background: var(--w11-accent);
-    color: var(--text-on-accent);
-    border-color: var(--w11-accent-pressed);
-}
-
-.btn.primary:hover {
-    background: var(--w11-accent-hover);
-    border-color: var(--w11-accent-pressed);
-    box-shadow: var(--shadow-accent);
-}
-
-.btn.secondary {
-    background: var(--w11-surface-alt);
-    border-color: var(--w11-border);
-}
-
-/* ==========================================================================
-   BARRE DE PROGRESSION
-   ========================================================================== */
-.exam-progress {
-    height: 4px;
-    background: var(--w11-border-soft);
-    border-radius: var(--radius-pill);
-    overflow: hidden;
-    margin: 0 0 14px;
-}
-
-.exam-progress-bar {
-    height: 100%;
-    width: 0%;
-    background: linear-gradient(90deg, var(--w11-accent), #4DA0E5);
-    border-radius: var(--radius-pill);
-    transition: width 0.35s ease;
-}
-
-/* ==========================================================================
-   PANNEAU STATISTIQUES
-   ========================================================================== */
+/* ---------------- Stats panel ---------------- */
 .stats-panel {
     margin: 0 0 14px;
-    padding: 16px 18px;
+    padding: 16px;
     border-radius: var(--radius-md);
-    background: var(--w11-surface);
-    border: 1px solid var(--w11-border);
-    box-shadow: var(--shadow-sm);
-    animation: fadeIn 0.22s ease;
+    background: rgba(0, 0, 0, 0.22);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    animation: fadeIn 0.25s ease;
 }
 
 .stats-panel h3 {
     margin: 0 0 12px;
-    color: var(--text-primary);
+    color: var(--green-200);
     font-size: 0.95rem;
-    font-weight: 700;
 }
 
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
     gap: 10px;
 }
 
 .stat-card {
-    padding: 12px 14px;
+    padding: 10px 12px;
     border-radius: var(--radius-sm);
-    background: var(--w11-accent-lighter);
-    border: 1px solid var(--w11-accent-light);
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.10);
 }
 
 .stat-card .stat-value {
     display: block;
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--w11-accent-pressed);
+    color: var(--green-200);
     line-height: 1.1;
-    font-variant-numeric: tabular-nums;
 }
 
 .stat-card .stat-label {
-    font-size: 0.7rem;
+    font-size: 0.72rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     color: var(--text-muted);
 }
 
-/* ==========================================================================
-   MINUTEUR
-   ========================================================================== */
+/* ---------------- Timer ---------------- */
 .timer-display {
     text-align: center;
-    margin: 0 auto 14px;
-    padding: 10px 16px;
+    margin: 0 auto 18px;
+    padding: 12px 16px;
     border-radius: var(--radius-md);
     font-weight: 700;
-    font-size: 1.05rem;
-    background: var(--w11-surface);
-    color: var(--w11-accent-pressed);
-    border: 1px solid var(--w11-border);
-    box-shadow: var(--shadow-sm);
+    font-size: 1.15rem;
+    background: rgba(0, 0, 0, 0.30);
+    color: var(--green-200);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.10);
     font-variant-numeric: tabular-nums;
     letter-spacing: 0.03em;
-    max-width: 320px;
 }
 
 .timer-display.warning {
     background: var(--warning-bg);
     color: var(--warning);
-    border-color: rgba(180, 123, 0, 0.4);
+    border-color: rgba(251, 191, 36, 0.5);
     animation: pulse 1.5s ease-in-out infinite;
 }
 
 .timer-display.critical {
     background: var(--danger-bg);
     color: var(--danger);
-    border-color: rgba(196, 43, 28, 0.4);
+    border-color: rgba(239, 68, 68, 0.5);
     animation: pulse 0.8s ease-in-out infinite;
 }
 
-/* ==========================================================================
-   ZONE DE QUESTION
-   ========================================================================== */
+/* ---------------- Quiz container ---------------- */
 .quiz-container {
     min-height: 240px;
-    flex: 1 1 auto;
 }
 
 .question-card,
 .results-card {
-    background: var(--w11-surface);
-    border: 1px solid var(--w11-border);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.03));
+    border: 1px solid var(--win7-border);
     border-radius: var(--radius-lg);
-    padding: 22px;
-    box-shadow: var(--shadow-md);
+    padding: 20px;
+    box-shadow: var(--shadow-md), inset 0 1px 0 rgba(255, 255, 255, 0.25);
 }
 
 .question-header {
@@ -571,33 +455,31 @@ button:disabled {
     justify-content: space-between;
     gap: 12px;
     flex-wrap: wrap;
-    color: var(--text-muted);
-    font-size: 0.72rem;
+    color: var(--green-200);
+    font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 0.06em;
     margin-bottom: 12px;
-    font-weight: 600;
 }
 
 .theme-badge {
-    background: var(--w11-accent-lighter);
-    color: var(--w11-accent-pressed);
-    border: 1px solid var(--w11-accent-light);
-    border-radius: var(--radius-pill);
+    background: rgba(16, 185, 129, 0.18);
+    color: var(--green-100);
+    border: 1px solid rgba(16, 185, 129, 0.45);
+    border-radius: 999px;
     padding: 4px 12px;
     text-transform: none;
     letter-spacing: 0;
-    font-size: 0.76rem;
+    font-size: 0.78rem;
     font-weight: 600;
 }
 
 .question-card h3,
 .results-card h2 {
     margin: 6px 0 14px;
-    color: var(--text-primary);
-    font-size: 1.08rem;
-    line-height: 1.45;
-    font-weight: 700;
+    color: #f0fff7;
+    font-size: 1.05rem;
+    line-height: 1.4;
 }
 
 .answers {
@@ -610,18 +492,18 @@ button:disabled {
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    background: var(--w11-surface-alt);
-    border: 1px solid var(--w11-border-soft);
+    background: rgba(0, 0, 0, 0.20);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: var(--radius-md);
     padding: 12px 14px;
     cursor: pointer;
-    transition: border-color 0.14s, background 0.14s, transform 0.08s, box-shadow 0.14s;
+    transition: border-color 0.15s, background 0.15s, transform 0.1s;
     -webkit-tap-highlight-color: transparent;
 }
 
 .option-item:hover {
-    border-color: var(--w11-accent-border);
-    background: var(--w11-accent-lighter);
+    border-color: var(--green-300);
+    background: rgba(16, 185, 129, 0.10);
 }
 
 .option-item:active {
@@ -630,7 +512,7 @@ button:disabled {
 
 .option-item input[type="radio"] {
     margin-top: 3px;
-    accent-color: var(--w11-accent);
+    accent-color: var(--green-400);
     width: 18px;
     height: 18px;
     flex-shrink: 0;
@@ -638,14 +520,14 @@ button:disabled {
 }
 
 .option-item input[type="radio"]:checked + span {
-    color: var(--text-primary);
+    color: #fff;
     font-weight: 600;
 }
 
 .option-item.selected {
-    border-color: var(--w11-accent);
-    background: var(--w11-accent-lighter);
-    box-shadow: var(--shadow-accent);
+    border-color: var(--green-300);
+    background: rgba(16, 185, 129, 0.16);
+    box-shadow: var(--shadow-glow);
 }
 
 .option-item span {
@@ -659,14 +541,14 @@ button:disabled {
     border-radius: var(--radius-md);
     padding: 14px 16px;
     border: 1px solid transparent;
-    animation: fadeIn 0.22s ease;
+    animation: fadeIn 0.25s ease;
 }
 
 .feedback strong {
     display: block;
-    font-size: 1.02rem;
+    font-size: 1.05rem;
     margin-bottom: 6px;
-    letter-spacing: 0.02em;
+    letter-spacing: 0.04em;
 }
 
 .feedback p {
@@ -678,39 +560,38 @@ button:disabled {
 
 .feedback p span {
     font-weight: 700;
-    color: var(--text-primary);
+    color: #fff;
 }
 
 .feedback code,
 .feedback pre {
     font-family: var(--font-mono);
-    background: var(--w11-surface-alt);
-    border: 1px solid var(--w11-border-soft);
-    border-radius: var(--radius-xs);
-    padding: 2px 6px;
+    background: rgba(0, 0, 0, 0.40);
+    border-radius: 4px;
+    padding: 1px 5px;
     font-size: 0.85em;
-    color: var(--w11-accent-pressed);
+    color: var(--green-200);
     white-space: pre-wrap;
     word-break: break-word;
 }
 
 .feedback.correct {
     background: var(--success-bg);
-    border-color: rgba(15, 123, 15, 0.35);
-    color: #143a14;
+    border-color: rgba(74, 222, 128, 0.55);
+    color: #ecfdf5;
 }
 
 .feedback.correct strong { color: var(--success); }
 
 .feedback.incorrect {
     background: var(--danger-bg);
-    border-color: rgba(196, 43, 28, 0.35);
-    color: #4a1410;
+    border-color: rgba(248, 113, 113, 0.55);
+    color: #fff5f5;
 }
 
 .feedback.incorrect strong { color: var(--danger); }
 
-/* Navigation entre questions */
+/* Navigation */
 .navigation {
     display: flex;
     justify-content: space-between;
@@ -724,17 +605,19 @@ button:disabled {
     min-width: 120px;
 }
 
-/* Résultats */
+/* Results */
 .results-card p { color: var(--text-secondary); }
 
-.results-actions { margin-top: 18px; }
+.results-actions {
+    margin-top: 18px;
+}
 
 .review-item {
     margin: 14px 0;
     padding: 12px 14px;
     border-radius: var(--radius-md);
-    background: var(--w11-surface-alt);
-    border: 1px solid var(--w11-border-soft);
+    background: rgba(0, 0, 0, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .review-item p {
@@ -744,43 +627,40 @@ button:disabled {
 }
 
 .review-item .success { color: var(--success); font-weight: 700; }
-.review-item .error   { color: var(--danger);  font-weight: 700; }
+.review-item .error { color: var(--danger); font-weight: 700; }
 
 .score-banner {
     text-align: center;
     margin: 14px 0;
-    padding: 22px;
+    padding: 18px;
     border-radius: var(--radius-lg);
-    background: linear-gradient(135deg, var(--w11-accent-lighter), var(--w11-surface-alt));
-    border: 1px solid var(--w11-accent-light);
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.20), rgba(0, 0, 0, 0.20));
+    border: 1px solid rgba(16, 185, 129, 0.40);
 }
 
 .score-banner .big {
     display: block;
-    font-size: 2.4rem;
+    font-size: 2.2rem;
     font-weight: 800;
-    color: var(--w11-accent-pressed);
+    color: #fff;
+    text-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
     margin-bottom: 4px;
-    line-height: 1;
 }
 
-.score-banner.pass .big { color: var(--success); }
+.score-banner.pass .big { color: var(--green-300); }
 .score-banner.fail .big { color: var(--danger); }
 
-/* ==========================================================================
-   TOAST
-   ========================================================================== */
+/* ---------------- Toast ---------------- */
 .toast {
     position: fixed;
     left: 50%;
-    bottom: 24px;
+    bottom: 20px;
     transform: translateX(-50%) translateY(20px);
-    background: var(--w11-surface);
-    color: var(--text-primary);
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
     padding: 12px 20px;
     border-radius: var(--radius-md);
-    border: 1px solid var(--w11-border);
-    border-left: 4px solid var(--w11-accent);
+    border: 1px solid var(--green-400);
     box-shadow: var(--shadow-lg);
     z-index: 1000;
     opacity: 0;
@@ -794,41 +674,27 @@ button:disabled {
     transform: translateX(-50%) translateY(0);
 }
 
-/* ==========================================================================
-   FOOTER
-   ========================================================================== */
-.app-footer {
-    margin-top: 28px;
-    padding: 16px 4px 4px;
-    border-top: 1px solid var(--w11-divider);
+/* ---------------- Footer ---------------- */
+.footer {
     text-align: center;
     color: var(--text-muted);
     font-size: 0.78rem;
-    line-height: 1.7;
+    margin-top: 28px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
 }
 
-.app-footer .footer-line { display: block; }
-
-.app-footer .role {
-    color: var(--w11-accent-pressed);
-    font-weight: 600;
-}
-
-/* ==========================================================================
-   ZONE D'ERREUR
-   ========================================================================== */
+/* ---------------- Error box ---------------- */
 .error-box {
     background: var(--danger-bg);
-    border: 1px solid rgba(196, 43, 28, 0.4);
+    border: 1px solid var(--danger);
     border-radius: var(--radius-md);
     padding: 18px;
-    color: #4a1410;
+    color: #fff5f5;
     text-align: center;
 }
 
-/* ==========================================================================
-   ANIMATIONS
-   ========================================================================== */
+/* ---------------- Animations ---------------- */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(6px); }
     to   { opacity: 1; transform: translateY(0); }
@@ -839,71 +705,87 @@ button:disabled {
     50%      { opacity: 0.6; }
 }
 
-/* ==========================================================================
-   RESPONSIVE
-   ========================================================================== */
+/* ============================================================
+   RESPONSIVE — Mobile first override for small screens
+   ============================================================ */
 
-/* Tablette */
-@media (max-width: 880px) {
-    .app-main { padding: 18px 16px 28px; }
+/* Tablet and below */
+@media (max-width: 768px) {
+    .container { padding: 14px 12px 28px; }
 
-    .hero h1 { font-size: 1.45rem; }
-    .hero .subtitle { font-size: 0.88rem; }
-
-    .header-titles .header-org { display: none; }   /* compacter le header */
-
-    .tabs-bar { flex-direction: column; align-items: stretch; gap: 8px; padding: 8px; }
-    .toolbar-actions {
-        border-left: none;
-        padding-left: 0;
-        border-top: 1px solid var(--w11-divider);
-        padding-top: 8px;
-        justify-content: flex-end;
+    .branding {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+        padding: 14px;
     }
 
-    .question-card, .results-card { padding: 16px; }
-}
+    .brand-logo { width: 64px; height: 64px; }
 
-/* Téléphone */
-@media (max-width: 540px) {
-    :root { --header-h: 52px; --header-logo: 34px; }
+    h1 { font-size: 1.25rem; }
+    .subtitle { font-size: 0.82rem; }
 
-    .app-main { padding: 14px 10px 24px; }
+    .exam-list,
+    .theme-list { gap: 6px; }
 
-    .hero h1 { font-size: 1.25rem; }
-    .hero .subtitle { font-size: 0.82rem; }
+    .exam-btn,
+    .theme-btn { padding: 7px 12px; font-size: 0.78rem; }
 
-    .header-app-name { font-size: 0.86rem; }
-    .header-controls .wc { width: 42px; }
-
-    .exam-btn, .theme-btn { padding: 7px 11px; font-size: 0.78rem; }
-    .btn-ghost, .file-import-label { padding: 7px 10px; font-size: 0.8rem; }
-
-    .toolbar-actions { width: 100%; justify-content: space-between; }
-    .toolbar-actions .btn,
-    .toolbar-actions .file-import-label { flex: 1 1 calc(50% - 4px); }
-
-    .stats-grid { grid-template-columns: repeat(2, 1fr); }
-    .timer-display { font-size: 0.98rem; padding: 9px 12px; }
+    .question-card,
+    .results-card { padding: 16px; }
 
     .question-card h3 { font-size: 0.98rem; }
-    .option-item { padding: 11px 12px; }
+
+    .option-item {
+        padding: 11px 12px;
+    }
+
     .option-item span { font-size: 0.88rem; }
 
     .navigation { gap: 8px; }
-    .navigation button { flex: 1 1 100%; padding: 12px 14px; }
+    .navigation button {
+        flex: 1 1 100%;
+        padding: 12px 14px;
+    }
 
-    .score-banner .big { font-size: 1.9rem; }
+    .score-banner .big { font-size: 1.8rem; }
+}
+
+/* Phones */
+@media (max-width: 480px) {
+    .container { padding: 10px 8px 24px; }
+
+    .win7-title-text { font-size: 0.78rem; }
+
+    h1 { font-size: 1.1rem; }
+    .subtitle { font-size: 0.75rem; }
+
+    .brand-logo { width: 56px; height: 56px; }
+    .brand-text h2 { font-size: 0.98rem; }
+    .brand-text p { font-size: 0.75rem; }
+
+    .exam-btn,
+    .theme-btn { padding: 7px 10px; font-size: 0.74rem; }
+
+    .toolbar-actions { width: 100%; }
+    .toolbar-actions .btn { flex: 1 1 calc(50% - 4px); }
+
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+
+    .timer-display { font-size: 1rem; padding: 10px 12px; }
+
+    .question-card h3 { font-size: 0.92rem; }
+    .option-item span { font-size: 0.85rem; }
+
     .review-item { padding: 10px 12px; }
 }
 
-/* Très grand écran : occuper davantage */
-@media (min-width: 1700px) {
-    .app-main { max-width: 1720px; padding: 26px 40px 40px; }
-    .hero h1 { font-size: 2.1rem; }
+/* Extra large screens */
+@media (min-width: 1200px) {
+    .container { max-width: 1100px; }
 }
 
-/* Réduction des animations */
+/* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         animation-duration: 0.01ms !important;
@@ -912,11 +794,11 @@ button:disabled {
     }
 }
 
-/* Impression */
+/* Print */
 @media print {
-    .app-header, .tabs-bar, .theme-list, .exam-progress, .timer-display,
+    .win7-titlebar, .toolbar, .theme-list, .exam-progress, .timer-display,
     .navigation, .toast, .stats-panel { display: none !important; }
     body { background: #fff; color: #000; }
-    .app-main { padding: 0; max-width: 100%; }
+    .container { border: none; background: none; }
     .question-card, .review-item { border: 1px solid #ccc; box-shadow: none; }
 }
