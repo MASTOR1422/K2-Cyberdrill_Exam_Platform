@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#0b6e4f">
+    <meta name="theme-color" content="#0067c0">
     <meta name="description" content="K2-Cyberdrill Exam Platform - Simulateur d'examens blancs CompTIA Security+ (SY0-701), CEH, OWASP, Pentest, Audit, IR et Kali Linux.">
     <title>K2-Cyberdrill — Plateforme d'Examens Cybersécurité | K-2 Global Business</title>
     <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -11,71 +11,79 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Decorative Aero background -->
-    <div class="aero-bg" aria-hidden="true"></div>
+    <!-- Arrière-plan dynamique style Windows 11 Bloom / Mica -->
+    <div class="win11-wallpaper" aria-hidden="true"></div>
 
-    <!-- Top bar (Windows 7 style) -->
-    <header class="win7-titlebar">
-        <div class="win7-window-controls" aria-hidden="true">
-            <span class="wc wc-min"></span>
-            <span class="wc wc-max"></span>
-            <span class="wc wc-close"></span>
+    <!-- HEADER FIGÉ EN HAUT (Style barre des tâches / fenêtre Windows 11) -->
+    <header class="win11-header">
+        <div class="header-left">
+            <img src="assets/logo-256.png" alt="Logo K-2 Global Business S.A.R.L.U." class="brand-logo" width="42" height="42">
+            <div class="brand-text">
+                <h2>K‑2 GLOBAL BUSINESS S.A.R.L.U.</h2>
+                <p>Conception & Ingénierie Numérique • Par Ananias KASANDA <span class="role">(IT‑DevSecOps)</span></p>
+            </div>
         </div>
-        <div class="win7-title-text">K2-Cyberdrill Exam Platform</div>
+
+        <div class="header-center">
+            <h1>K2-Cyberdrill Exam Platform</h1>
+            <span class="subtitle-badge">848 questions techniques enrichies • 8 certifications</span>
+        </div>
+
+        <div class="header-right">
+            <div id="timer-display" class="timer-display" role="timer" aria-live="polite">Aucun examen lancé</div>
+            <div class="win11-window-controls" aria-hidden="true">
+                <span class="wc wc-min" title="Réduire">─</span>
+                <span class="wc wc-max" title="Agrandir">◻</span>
+                <span class="wc wc-close" title="Fermer">✕</span>
+            </div>
+        </div>
     </header>
 
-    <main class="container" role="main">
-        <!-- Branding block -->
-        <section class="branding" aria-label="Marque">
-            <img src="assets/logo-256.png" alt="Logo K-2 Global Business S.A.R.L.U." class="brand-logo" width="96" height="96">
-            <div class="brand-text">
-                <h2>K&#8209;2 GLOBAL BUSINESS S.A.R.L.U.</h2>
-                <p>Conception &amp; Ingénierie Numérique &bull; Par Ananias KASANDA <span class="role">(IT&#8209;DevSecOps)</span></p>
+    <!-- CONTENEUR PRINCIPAL PLEIN ÉCRAN (Sans scroll externe) -->
+    <main class="app-shell" role="main">
+        <!-- Barre d'outils supérieure : Onglets examens côte à côte + actions -->
+        <section class="top-controls-bar" aria-label="Navigation et outils">
+            <div id="menu" class="toolbar" role="toolbar" aria-label="Barre d'outils">
+                <div id="exam-list" class="exam-list" role="tablist" aria-label="Choix de l'examen"></div>
+                <div class="toolbar-actions">
+                    <label class="btn btn-fluent file-import-label" tabindex="0">
+                        <span>⤓ Importer JSON</span>
+                        <input id="json-upload" type="file" accept=".json,application/json" hidden>
+                    </label>
+                    <button type="button" class="btn btn-fluent" id="toggle-stats" aria-pressed="false">Statistiques</button>
+                </div>
+            </div>
+
+            <!-- Filtres thématiques alignés horizontalement -->
+            <div id="theme-list" class="theme-list" role="tablist" aria-label="Filtrer par thème"></div>
+
+            <!-- Barre de progression Windows 11 -->
+            <div class="exam-progress" aria-hidden="true">
+                <div class="exam-progress-bar" id="exam-progress-bar"></div>
             </div>
         </section>
 
-        <h1>Plateforme d'Entraînement aux Certifications Cybersécurité</h1>
-        <p class="subtitle">Simulation d'examens blancs — 848 questions techniques enrichies réparties sur 8 certifications</p>
-
-        <!-- Progress bar (Windows 7 style green) -->
-        <div class="exam-progress" aria-hidden="true">
-            <div class="exam-progress-bar" id="exam-progress-bar"></div>
-        </div>
-
-        <!-- Toolbar: exam switcher + import -->
-        <div id="menu" class="toolbar" role="toolbar" aria-label="Barre d'outils">
-            <div id="exam-list" class="exam-list" role="tablist" aria-label="Choix de l'examen"></div>
-            <div class="toolbar-actions">
-                <label class="btn btn-ghost file-import-label" tabindex="0">
-                    <span>⤓ Importer un JSON</span>
-                    <input id="json-upload" type="file" accept=".json,application/json" hidden>
-                </label>
-                <button type="button" class="btn btn-ghost" id="toggle-stats" aria-pressed="false">Statistiques</button>
-            </div>
-        </div>
-
-        <!-- Theme filters -->
-        <div id="theme-list" class="theme-list" role="tablist" aria-label="Filtrer par thème"></div>
-
-        <!-- Statistics panel (collapsible) -->
+        <!-- Panneau de statistiques (superposé ou dépliable proprement) -->
         <section id="stats-panel" class="stats-panel" hidden aria-label="Statistiques de l'examen">
             <h3>Statistiques de l'examen courant</h3>
             <div id="stats-content" class="stats-grid"></div>
         </section>
 
-        <!-- Timer -->
-        <div id="timer-display" class="timer-display" role="timer" aria-live="polite">Aucun examen lancé</div>
-
-        <!-- Quiz area -->
-        <div id="quiz-container" class="quiz-container" role="region" aria-live="polite" aria-label="Zone de question"></div>
-
-        <footer class="footer">
-            &copy; 2026 K&#8209;2 GLOBAL BUSINESS S.A.R.L.U. &mdash; Tous droits réservés.<br>
-            Développé par Ananias KASANDA (IT&#8209;DevSecOps).
-        </footer>
+        <!-- ZONE CENTRALE DU QUIZ (Ajustée automatiquement à l'espace restant) -->
+        <section id="quiz-container" class="quiz-container" role="region" aria-live="polite" aria-label="Zone de question"></section>
     </main>
 
-    <!-- Toast notification -->
+    <!-- FOOTER FIGÉ EN BAS -->
+    <footer class="win11-footer">
+        <div class="footer-left">
+            <span>© 2026 <strong>K‑2 GLOBAL BUSINESS S.A.R.L.U.</strong> — Tous droits réservés.</span>
+        </div>
+        <div class="footer-right">
+            <span>Développé par <strong>Ananias KASANDA</strong> <span class="badge-devsecops">IT‑DevSecOps</span></span>
+        </div>
+    </footer>
+
+    <!-- Notification Toast Windows 11 -->
     <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
 
     <script src="app.js"></script>
