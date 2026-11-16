@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0b6e4f">
+    <meta name="description" content="K2-Cyberdrill Exam Platform - Simulateur d'examens blancs CompTIA Security+ (SY0-701), CEH, OWASP, Pentest, Audit, IR et Kali Linux.">
+    <title>K2-Cyberdrill — Plateforme d'Examens Cybersécurité | K-2 Global Business</title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link rel="apple-touch-icon" href="assets/logo-256.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Decorative Aero background -->
+    <div class="aero-bg" aria-hidden="true"></div>
+
+    <!-- Top bar (Windows 7 style) -->
+    <header class="win7-titlebar">
+        <div class="win7-window-controls" aria-hidden="true">
+            <span class="wc wc-min"></span>
+            <span class="wc wc-max"></span>
+            <span class="wc wc-close"></span>
+        </div>
+        <div class="win7-title-text">K2-Cyberdrill Exam Platform</div>
+    </header>
+
+    <main class="container" role="main">
+        <!-- Branding block -->
+        <section class="branding" aria-label="Marque">
+            <img src="assets/logo-256.png" alt="Logo K-2 Global Business S.A.R.L.U." class="brand-logo" width="96" height="96">
+            <div class="brand-text">
+                <h2>K&#8209;2 GLOBAL BUSINESS S.A.R.L.U.</h2>
+                <p>Conception &amp; Ingénierie Numérique &bull; Par Ananias KASANDA <span class="role">(IT&#8209;DevSecOps)</span></p>
+            </div>
+        </section>
+
+        <h1>Plateforme d'Entraînement aux Certifications Cybersécurité</h1>
+        <p class="subtitle">Simulation d'examens blancs — 848 questions techniques enrichies réparties sur 8 certifications</p>
+
+        <!-- Progress bar (Windows 7 style green) -->
+        <div class="exam-progress" aria-hidden="true">
+            <div class="exam-progress-bar" id="exam-progress-bar"></div>
+        </div>
+
+        <!-- Toolbar: exam switcher + import -->
+        <div id="menu" class="toolbar" role="toolbar" aria-label="Barre d'outils">
+            <div id="exam-list" class="exam-list" role="tablist" aria-label="Choix de l'examen"></div>
+            <div class="toolbar-actions">
+                <label class="btn btn-ghost file-import-label" tabindex="0">
+                    <span>⤓ Importer un JSON</span>
+                    <input id="json-upload" type="file" accept=".json,application/json" hidden>
+                </label>
+                <button type="button" class="btn btn-ghost" id="toggle-stats" aria-pressed="false">Statistiques</button>
+            </div>
+        </div>
+
+        <!-- Theme filters -->
+        <div id="theme-list" class="theme-list" role="tablist" aria-label="Filtrer par thème"></div>
+
+        <!-- Statistics panel (collapsible) -->
+        <section id="stats-panel" class="stats-panel" hidden aria-label="Statistiques de l'examen">
+            <h3>Statistiques de l'examen courant</h3>
+            <div id="stats-content" class="stats-grid"></div>
+        </section>
+
+        <!-- Timer -->
+        <div id="timer-display" class="timer-display" role="timer" aria-live="polite">Aucun examen lancé</div>
+
+        <!-- Quiz area -->
+        <div id="quiz-container" class="quiz-container" role="region" aria-live="polite" aria-label="Zone de question"></div>
+
+        <footer class="footer">
+            &copy; 2026 K&#8209;2 GLOBAL BUSINESS S.A.R.L.U. &mdash; Tous droits réservés.<br>
+            Développé par Ananias KASANDA (IT&#8209;DevSecOps).
+        </footer>
+    </main>
+
+    <!-- Toast notification -->
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+# OS / éditeurs
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# Dépendances (aucune pour cette appli, mais par précaution)
+node_modules/
+
+# Fichiers de build temporaires
+*.log
+*.tmp
