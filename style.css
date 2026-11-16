@@ -1,7 +1,7 @@
 /* ==========================================================================
    K2-CYBERDRILL EXAM PLATFORM - FEUILLE DE STYLE PRINCIPALE
    Thème : Windows 11 Fluent Design (Bleu Clair)
-   Structure : Header encadré & figé + Footer figé + Page unique (100dvh)
+   Structure : Logo externe (50mm) + Header encadré & figé + Page unique
    Conception : Ananias KASANDA (IT-DevSecOps) | K-2 GLOBAL BUSINESS S.A.R.L.U.
    ========================================================================== */
 
@@ -44,8 +44,9 @@
     --shadow-lg: 0 10px 30px rgba(15, 42, 86, 0.18);
     --shadow-glow: 0 0 0 2px rgba(0, 120, 212, 0.22), 0 4px 12px rgba(0, 120, 212, 0.18);
 
-    /* Dimensions fixes Header / Footer / Marges latérales */
+    /* Dimensions fixes Header / Logo externe / Footer / Marges */
     --header-h: 92px;
+    --logo-w: 50mm;
     --footer-h: 40px;
     --side-margin: 1cm;
 
@@ -85,55 +86,60 @@ html, body {
 }
 
 /* ==========================================================================
-   1. HEADER INSTITUTIONNEL FIXE, ENCADRÉ, LOGO & TITRES CÔTE À CÔTE CENTRÉS
+   1. BANDEAU SUPÉRIEUR FIXE : LOGO EXTERNE (50mm) + HEADER ENCADRÉ CÔTE À CÔTE
    ========================================================================== */
-.site-header {
+.top-banner-wrapper {
     position: fixed;
     top: 8px;
     left: var(--side-margin);
     right: var(--side-margin);
     z-index: 1000;
     height: var(--header-h);
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    gap: 12px; /* Sépare visuellement les deux objets distincts */
+}
 
-    /* Encadrement complet et design Glassmorphism Windows 11 */
+/* Objet 1 : Conteneur du Logo en dehors du header (largeur ~50mm, hauteur = header) */
+.external-logo-box {
+    flex: 0 0 var(--logo-w);
+    width: var(--logo-w);
+    height: 100%;
+    background: #ffffff;
+    border: 2px solid var(--accent);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+    overflow: hidden;
+}
+
+.external-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+/* Objet 2 : Le Header encadré et figé avec les textes centrés */
+.site-header {
+    flex: 1 1 auto;
+    height: 100%;
     background: var(--glass-bg-strong);
     backdrop-filter: blur(22px) saturate(170%);
     -webkit-backdrop-filter: blur(22px) saturate(170%);
     border: 2px solid var(--accent);
     border-radius: var(--radius-md);
     box-shadow: var(--shadow-md);
-
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 6px 18px;
+    padding: 6px 20px;
 }
 
-/* Bloc interne qui place le logo et les textes côte à côte, centrés ensemble */
-.header-frame {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 18px;
-    height: 100%;
-    max-width: 100%;
-}
-
-/* Logo proportionnel à la hauteur exacte du header */
-.header-logo {
-    height: calc(var(--header-h) - 18px);
-    width: calc(var(--header-h) - 18px);
-    object-fit: contain;
-    border-radius: var(--radius-sm);
-    background: #ffffff;
-    padding: 3px;
-    border: 1px solid rgba(0, 120, 212, 0.25);
-    box-shadow: var(--shadow-sm);
-    flex-shrink: 0;
-}
-
-/* Titres centrés à côté du logo */
 .header-text {
     display: flex;
     flex-direction: column;
@@ -141,6 +147,7 @@ html, body {
     justify-content: center;
     text-align: center;
     gap: 2px;
+    width: 100%;
 }
 
 .header-title {
@@ -176,8 +183,8 @@ html, body {
    ========================================================================== */
 .container {
     position: fixed;
-    top: calc(var(--header-h) + 16px);
-    bottom: calc(var(--footer-h) + 8px);
+    top: calc(var(--header-h) + 18px);
+    bottom: calc(var(--footer-h) + 10px);
     left: var(--side-margin);
     right: var(--side-margin);
     padding: 12px 16px;
@@ -656,7 +663,7 @@ button:disabled {
     position: fixed;
     left: var(--side-margin);
     right: var(--side-margin);
-    bottom: 4px;
+    bottom: 6px;
     z-index: 999;
     height: var(--footer-h);
     padding: 0 16px;
@@ -685,7 +692,7 @@ button:disabled {
 .toast {
     position: fixed;
     left: 50%;
-    bottom: calc(var(--footer-h) + 16px);
+    bottom: calc(var(--footer-h) + 18px);
     transform: translateX(-50%) translateY(20px);
     background: var(--text-primary);
     color: #ffffff;
@@ -730,9 +737,10 @@ button:disabled {
     :root {
         --side-margin: 12px;
         --header-h: 82px;
+        --logo-w: 110px;
     }
-    .header-title { font-size: 1.2rem; }
-    .header-subtitle { font-size: 0.78rem; }
+    .header-title { font-size: 1.18rem; }
+    .header-subtitle { font-size: 0.76rem; }
     .answers { grid-template-columns: 1fr; }
 }
 
@@ -740,10 +748,11 @@ button:disabled {
     :root {
         --side-margin: 8px;
         --header-h: 72px;
+        --logo-w: 76px;
     }
-    .header-frame { gap: 10px; }
+    .top-banner-wrapper { gap: 8px; }
     .header-brand { display: none; }
-    .header-title { font-size: 1.05rem; }
+    .header-title { font-size: 1.02rem; }
     .toolbar { flex-direction: column; align-items: stretch; }
     .toolbar-actions { justify-content: center; }
 }
